@@ -51,6 +51,21 @@
             pointer-events: none;
         }
 
+        /* Layer Background Gambar Baru */
+        .bg-image-layer {
+            position: absolute;
+            top: -5%; /* Sedikit diperlebar untuk mencegah tepi tajam saat diblur */
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            background-image: url('https://i.imgur.com/FzTzke1.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4; /* Transparansi gambar (0.0 sampai 1.0) */
+            filter: blur(5px); /* Efek blur/kabur */
+            z-index: -1;
+        }
+
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -492,6 +507,7 @@
 
     <!-- Animasi Background Blur -->
     <div class="ambient-bg">
+        <div class="bg-image-layer"></div>
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
