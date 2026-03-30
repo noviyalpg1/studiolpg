@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studiolpg - Simulasi Interaktif</title>
+    <!-- Menggunakan font Plus Jakarta Sans agar selaras dengan website utama -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Warna disesuaikan dengan tema Neutral & Amber website utama */
+            --bg-color: #171717; /* Sesuai dengan bg-neutral-900 */
+            --text-main: #ffffff;
+            --text-muted: #a3a3a3; /* text-neutral-400 */
+            --primary-glow: #f59e0b; /* text-amber-500 */
+            --secondary-glow: #f97316; /* text-orange-500 */
+            --tertiary-glow: #fbbf24; /* text-amber-400 */
+            --glass-bg: rgba(23, 23, 23, 0.6);
+            --glass-border: rgba(245, 158, 11, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* Mencegah scrolling, hanya 1 layar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- Ambient Background Animations --- */
+        .ambient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary-glow);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--secondary-glow);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--tertiary-glow); 
+            top: 40%;
+            left: 60%;
+            opacity: 0.2;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* --- Splash Screen --- */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+        }
+
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-logo-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .splash-logo {
+            width: 100%;
+            height: auto;
+            z-index: 2;
+            animation: splash-pulse 2s infinite alternate;
+            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.8));
+        }
+
+        .splash-glow {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 60%);
+            border-radius: 50%;
+            z-index: 1;
+            animation: splash-glow-pulse 2s infinite alternate;
+        }
+
+        .splash-text {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 2.5rem;
+            color: white;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .splash-loading-bar {
+            width: 250px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .splash-loading-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: var(--primary-glow);
+            box-shadow: 0 0 10px var(--primary-glow);
+            animation: loading-progress 2.5s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes splash-pulse {
+            0% { transform: scale(0.95); }
+            100% { transform: scale(1.05); }
+        }
+
+        @keyframes splash-glow-pulse {
+            0% { opacity: 0.5; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes loading-progress {
+            0% { width: 0%; }
+            40% { width: 60%; }
+            80% { width: 80%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Main Layout & Glassmorphism --- */
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem;
+            width: 90%;
+            max-width: 1100px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* --- Text Section --- */
+        .text-section {
+            flex: 1;
+            padding-right: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        body.app-loaded .text-section {
+            animation: slideUpFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+        
+        .text-amber {
+            color: var(--primary-glow);
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            max-width: 90%;
+        }
+
+        /* --- Button Styling --- */
+        .start-btn {
+            position: relative;
+            background: transparent;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 1rem 3.5rem;
+            border: 2px solid var(--primary-glow);
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            /* Glow amber */
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2), inset 0 0 10px rgba(245, 158, 11, 0.1);
+        }
+
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.6), inset 0 0 20px rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.1);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .start-btn:hover::before {
+            left: 100%;
+        }
+
+        .start-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* --- Visual / Preview Section (Desktop Horizontal Layout) --- */
+        .visual-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        body.app-loaded .visual-section {
+            animation: slideUpFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .abstract-preview {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(245,158,11,0.05), rgba(255,255,255,0));
+            border: 1px solid rgba(245,158,11,0.15);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Efek glow berdenyut di belakang logo */
+        .core-glow {
+            position: absolute;
+            width: 100%; /* Diperbesar agar cahayanya lebih menyebar */
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.5) 0%, rgba(245, 158, 11, 0.15) 45%, transparent 75%);
+            animation: pulse 3s infinite alternate;
+            z-index: 1;
+        }
+
+        /* Styling integrasi Logo Imgur */
+        .core-logo {
+            width: 85%; /* Diperbesar ukurannya dari 65% menjadi 85% */
+            height: auto;
+            z-index: 2;
+            object-fit: contain;
+            animation: float-logo 4s ease-in-out infinite;
+            /* Efek drop-shadow cahaya berlapis untuk glow yang sangat kuat */
+            filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.9)) 
+                    drop-shadow(0 0 50px rgba(245, 158, 11, 0.5)) 
+                    drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+        }
+
+        /* Cincin luar yang berputar lambat */
+        .ring-outer {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border: 2px dashed rgba(245,158,11,0.3);
+            border-radius: 50%;
+            animation: spin 25s linear infinite;
+        }
+
+        /* Cincin dalam yang berputar berlawanan arah (efek sci-fi) */
+        .ring-inner {
+            position: absolute;
+            width: 105%;
+            height: 105%;
+            border: 2px solid transparent;
+            border-top: 2px solid rgba(245,158,11,0.6);
+            border-bottom: 2px solid rgba(245,158,11,0.6);
+            border-radius: 50%;
+            animation: spin-reverse 15s linear infinite;
+        }
+
+        @keyframes slideUpFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            100% { transform: rotate(-360deg); }
+        }
+
+        @keyframes float-logo {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.05); }
+        }
+
+        /* --- App Starting Transition State --- */
+        .hero-container.launching {
+            transform: scale(1.5) translateZ(50px);
+            opacity: 0;
+            filter: blur(20px);
+            pointer-events: none;
+        }
+
+        /* --- Responsiveness --- */
+        
+        /* Landscape (Layar Lebar tapi Pendek / HP Dimiringkan) */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero-container {
+                padding: 1.5rem 3rem;
+            }
+            h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+            p { font-size: 1rem; margin-bottom: 1.5rem; }
+            .abstract-preview { max-width: 220px; }
+            .start-btn { padding: 0.8rem 2rem; font-size: 1.1rem; }
+        }
+
+        /* Portrait Mobile (Layar Sempit / HP Potret) */
+        @media (max-width: 900px) and (orientation: portrait), (max-width: 600px) {
+            .hero-container {
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                text-align: center;
+                gap: 2rem;
+                width: 95%;
+                max-height: 95vh;
+                justify-content: center;
+            }
+
+            .text-section {
+                padding-right: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            /* Memperpendek teks di mobile */
+            .hide-mobile {
+                display: none;
+            }
+
+            /* Tombol besar untuk sentuhan jari */
+            .start-btn {
+                width: 100%;
+                max-width: 100%;
+                padding: 1.5rem;
+                font-size: 1.5rem;
+                border-radius: 100px;
+            }
+
+            .visual-section {
+                order: -1; /* Simulasi di atas, kontrol di bawah */
+                width: 100%;
+            }
+
+            .abstract-preview {
+                max-width: 260px;
+            }
+        }
+
+        /* Layar HP Sangat Kecil */
+        @media (max-width: 400px) {
+            .hero-container { padding: 1.5rem; gap: 1.5rem; }
+            h1 { font-size: 2.5rem; }
+            .abstract-preview { max-width: 220px; }
+            .start-btn { padding: 1.2rem; font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-logo-wrapper">
+            <div class="splash-glow"></div>
+            <img src="https://i.imgur.com/2rqZrlH.png" alt="Logo" class="splash-logo">
+        </div>
+        <div class="splash-text"><span class="text-amber">Studio</span>lpg</div>
+        <div class="splash-loading-bar">
+            <div class="splash-loading-fill"></div>
+        </div>
+    </div>
+
+    <!-- Animasi Background Blur -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Konten Utama (Glassmorphism Card) -->
+    <main class="hero-container" id="heroContainer">
+        
+        <!-- Sisi Kiri: Teks & Tombol -->
+        <section class="text-section">
+            <!-- Judul disesuaikan agar sama persis seperti di navbar website utama -->
+            <h1><span class="text-amber">Studio</span>lpg</h1>
+            <p>Akses media pembelajaran <span class="hide-mobile">untuk mendukung proses belajar mengajarmu</span></p>
+            <button class="start-btn" id="startBtn">START</button>
+        </section>
+
+        <!-- Sisi Kanan: Visual Tambahan / Dekorasi Geometris dengan Logo -->
+        <section class="visual-section">
+            <div class="abstract-preview">
+                <div class="ring-outer"></div>
+                <div class="ring-inner"></div>
+                <div class="core-glow"></div>
+                <img src="https://i.imgur.com/2rqZrlH.png" alt="Studiolpg Logo" class="core-logo">
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Logika Splash Screen
+        window.addEventListener('load', () => {
+            const splashScreen = document.getElementById('splashScreen');
+            
+            // Tunggu animasi loading bar selesai (sekitar 2.5 detik)
+            setTimeout(() => {
+                splashScreen.classList.add('hidden');
+                
+                // Tambahkan class ke body untuk memicu animasi masuk konten utama
+                document.body.classList.add('app-loaded');
+            }, 2600);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const startBtn = document.getElementById('startBtn');
+            const heroContainer = document.getElementById('heroContainer');
+
+            startBtn.addEventListener('click', () => {
+                // 1. Tambahkan efek ripple manual (opsional) atau ubah teks
+                startBtn.textContent = 'MEMUAT...';
+                // Gunakan warna amber (245, 158, 11) untuk glow aktif
+                startBtn.style.boxShadow = '0 0 50px rgba(245, 158, 11, 1)';
+
+                // 2. Transisi keluar (zoom in & fade out)
+                setTimeout(() => {
+                    heroContainer.classList.add('launching');
+                }, 200); // Jeda sebentar agar efek klik terasa
+
+                // 3. Arahkan ke URL tujuan setelah animasi selesai
+                setTimeout(() => {
+                    window.location.href = "https://noviyalpg1.github.io/studiolpgv3/#";
+                }, 1200); // Disesuaikan dengan durasi transisi CSS (0.8s)
+            });
+        });
+    </script>
+</body>
+</html>
