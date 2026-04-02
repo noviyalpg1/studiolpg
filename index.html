@@ -210,6 +210,67 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- Label Kiri Atas --- */
+        .top-left-label {
+            position: absolute;
+            top: 1.5rem; /* Dibuat mepet ke atas */
+            left: 1.5rem; /* Dibuat mepet ke kiri */
+            width: 75px; /* Ukuran standar logo website */
+            height: auto;
+            z-index: 20;
+            opacity: 0;
+            transition: all 0.5s ease;
+            /* Efek cahaya kuning (amber glow) berlapis */
+            filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8)) drop-shadow(0 0 25px rgba(245, 158, 11, 0.4));
+        }
+
+        /* Efek hover untuk interaktivitas */
+        .top-left-label:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) drop-shadow(0 0 30px rgba(245, 158, 11, 0.6));
+        }
+
+        body.app-loaded .top-left-label {
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.5s; /* Muncul setelah splash screen selesai */
+        }
+
+        /* --- Footer Info --- */
+        .footer-info {
+            display: flex;
+            gap: 4rem;
+            margin-top: 3.5rem;
+            align-items: flex-start;
+        }
+
+        .info-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .link-hover:hover {
+            color: var(--primary-glow);
+            text-decoration: underline;
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+        }
+
         /* --- Main Layout & Glassmorphism --- */
         .hero-container {
             position: relative;
@@ -223,9 +284,10 @@
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            padding: 4rem;
-            width: 90%;
-            max-width: 1100px;
+            padding: 4rem 6rem;
+            width: 96vw; /* Diperbesar hingga 96% dari lebar layar */
+            height: 94vh; /* Diperbesar hingga 94% dari tinggi layar */
+            max-width: 1800px; /* Batas maksimal sangat diperbesar */
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
@@ -326,15 +388,12 @@
             width: 100%;
             max-width: 350px;
             aspect-ratio: 1 / 1;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(245,158,11,0.05), rgba(255,255,255,0));
-            border: 1px solid rgba(245,158,11,0.15);
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
+            /* Efek background hitam, border, shadow, dan blur dihapus 
+               agar gambar tidak lagi dibatasi oleh lingkaran */
         }
 
         /* Efek glow berdenyut di belakang logo */
@@ -423,6 +482,11 @@
             .hero-container {
                 padding: 1.5rem 3rem;
             }
+            .top-left-label {
+                top: 1rem;
+                left: 1rem;
+                width: 55px;
+            }
             h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
             p { font-size: 1rem; margin-bottom: 1.5rem; }
             .abstract-preview { max-width: 220px; }
@@ -436,9 +500,16 @@
                 padding: 2.5rem 2rem;
                 text-align: center;
                 gap: 2rem;
-                width: 95%;
-                max-height: 95vh;
+                width: 96vw;
+                height: 96vh; /* Memaksimalkan tinggi layar HP */
+                max-height: 96vh;
                 justify-content: center;
+            }
+
+            .top-left-label {
+                top: 1rem; /* Sangat mepet untuk layar mobile */
+                left: 1rem;
+                width: 55px; /* Disesuaikan (diperkecil) untuk layar mobile */
             }
 
             .text-section {
@@ -472,6 +543,17 @@
                 border-radius: 100px;
             }
 
+            .footer-info {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 2.5rem;
+                align-items: center; /* Menengahkan teks info di HP */
+            }
+
+            .info-block {
+                align-items: center;
+            }
+
             .visual-section {
                 order: -1; /* Simulasi di atas, kontrol di bawah */
                 width: 100%;
@@ -497,6 +579,7 @@
     <div id="splashScreen" class="splash-screen">
         <div class="splash-logo-wrapper">
             <div class="splash-glow"></div>
+            <!-- Mengganti gambar pada splash screen -->
             <img src="https://i.imgur.com/2rqZrlH.png" alt="Logo" class="splash-logo">
         </div>
         <div class="splash-text"><span class="text-amber">Studio</span>lpg</div>
@@ -516,12 +599,27 @@
     <!-- Konten Utama (Glassmorphism Card) -->
     <main class="hero-container" id="heroContainer">
         
+        <!-- Label Pojok Kiri Atas -->
+        <img src="https://i.imgur.com/2rqZrlH.png" alt="Label" class="top-left-label">
+
         <!-- Sisi Kiri: Teks & Tombol -->
         <section class="text-section">
             <!-- Judul disesuaikan agar sama persis seperti di navbar website utama -->
             <h1><span class="text-amber">Studio</span>lpg</h1>
             <p>Akses media pembelajaran <span class="hide-mobile">untuk mendukung proses belajar mengajarmu</span></p>
             <button class="start-btn" id="startBtn">START</button>
+            
+            <!-- Footer Info -->
+            <div class="footer-info">
+                <div class="info-block">
+                    <span class="info-label">Presented By :</span>
+                    <span class="info-value">Noviyalpg Creative</span>
+                </div>
+                <div class="info-block">
+                    <span class="info-label">Contact :</span>
+                    <a href="https://s.id/noviyalpg" target="_blank" class="info-value link-hover">https://s.id/noviyalpg</a>
+                </div>
+            </div>
         </section>
 
         <!-- Sisi Kanan: Visual Tambahan / Dekorasi Geometris dengan Logo -->
@@ -530,7 +628,8 @@
                 <div class="ring-outer"></div>
                 <div class="ring-inner"></div>
                 <div class="core-glow"></div>
-                <img src="https://i.imgur.com/2rqZrlH.png" alt="Studiolpg Logo" class="core-logo">
+                <!-- Mengganti gambar utama -->
+                <img src="https://i.imgur.com/MEUSsuB.png" alt="Studiolpg Logo" class="core-logo">
             </div>
         </section>
 
