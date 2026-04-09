@@ -544,14 +544,16 @@
             }
 
             .footer-info {
-                flex-direction: column;
-                gap: 1.5rem;
+                flex-direction: row; /* Mengubah kembali menjadi baris (kiri-kanan) */
+                justify-content: center; /* Menengahkan seluruh blok info */
+                gap: 2rem;
                 margin-top: 2.5rem;
-                align-items: center; /* Menengahkan teks info di HP */
+                width: 100%;
             }
 
             .info-block {
-                align-items: center;
+                align-items: flex-start; /* Teks di dalam masing-masing blok rata kiri */
+                text-align: left;
             }
 
             .visual-section {
@@ -570,6 +572,11 @@
             h1 { font-size: 2.5rem; }
             .abstract-preview { max-width: 220px; }
             .start-btn { padding: 1.2rem; font-size: 1.3rem; }
+            
+            /* Penyesuaian agar teks tetap muat bersebelahan di layar sangat sempit */
+            .footer-info { gap: 1rem; margin-top: 1.5rem; }
+            .info-label { font-size: 0.75rem; }
+            .info-value { font-size: 0.9rem; }
         }
     </style>
 </head>
