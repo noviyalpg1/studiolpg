@@ -32,11 +32,11 @@
                     }
                 }
             }
-        }
+        };
     </script>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -96,10 +96,10 @@
                     <a href="#pelatihan" class="nav-link text-sm font-medium transition-colors">Pelatihan</a>
                     <a href="#sosmed" class="nav-link text-sm font-medium transition-colors">Sosmed</a>
                     
-                    <!-- Admin Panel Button at Top -->
-                    <a href="#admin" class="nav-link inline-flex items-center justify-center px-3.5 py-1.5 border border-slate-300 dark:border-slate-700 rounded-full shadow-sm text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover:scale-105 gap-1.5">
-                        <i data-lucide="settings" class="w-4 h-4"></i> Admin Panel
-                    </a>
+                    <!-- Admin Panel Button at Top (Hanya logo settings) -->
+                    <button onclick="handleAdminAccess()" class="nav-link inline-flex items-center justify-center w-9 h-9 border border-slate-300 dark:border-slate-700 rounded-full shadow-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover:scale-105" title="Panel Admin">
+                        <i data-lucide="settings" class="w-4 h-4"></i>
+                    </button>
                     
                     <a href="#hubungi" class="nav-link inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all hover:scale-105">Hubungi Saya</a>
                 </div>
@@ -125,7 +125,9 @@
                 <a href="#pelatihan" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Pelatihan</a>
                 <a href="#sosmed" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Sosmed</a>
                 <!-- Admin Panel Mobile -->
-                <a href="#admin" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors border-t border-slate-200 dark:border-slate-800 mt-1">Admin Panel</a>
+                <button onclick="handleAdminAccess()" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium transition-colors border-t border-slate-200 dark:border-slate-800 mt-1 flex items-center gap-2">
+                    <i data-lucide="settings" class="w-5 h-5"></i> Pengaturan Web
+                </button>
                 <a href="#hubungi" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mt-2">Hubungi Saya</a>
             </div>
         </div>
@@ -203,7 +205,7 @@
                 </div>
             </section>
 
-            <!-- Halaman: Tentang (Dengan Seksi Prestasi Baru) -->
+            <!-- Halaman: Tentang (Dengan Seksi Prestasi) -->
             <section id="tentang" class="spa-page hidden pt-6 pb-10">
                 <div class="space-y-8">
                     <!-- Bio & Foto -->
@@ -233,7 +235,7 @@
                         </div>
                     </div>
 
-                    <!-- SEKSI PRESTASI & PENGHARGAAN (BARU & DINAMIS) -->
+                    <!-- SEKSI PRESTASI & PENGHARGAAN -->
                     <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50 space-y-6">
                         <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                             <i data-lucide="trophy" class="text-yellow-500"></i> Prestasi & Penghargaan
@@ -247,7 +249,7 @@
                 </div>
             </section>
 
-            <!-- Halaman: Pengalaman (Dinamis) -->
+            <!-- Halaman: Pengalaman -->
             <section id="pengalaman" class="spa-page hidden pt-6 pb-10">
                 <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
                     <h2 class="text-3xl font-bold mb-10 flex items-center justify-center gap-3"><i data-lucide="briefcase" class="text-blue-500"></i> Jejak Karir & Pendidikan</h2>
@@ -257,7 +259,7 @@
                 </div>
             </section>
 
-            <!-- Halaman: Sertifikasi (Dinamis) -->
+            <!-- Halaman: Sertifikasi -->
             <section id="sertifikasi" class="spa-page hidden pt-6 pb-10">
                 <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
                     <h2 class="text-3xl font-bold mb-8 flex items-center justify-center gap-3"><i data-lucide="award" class="text-blue-500"></i> Sertifikasi Profesional</h2>
@@ -267,13 +269,13 @@
                 </div>
             </section>
 
-            <!-- Halaman: Pelatihan (Galeri Dinamis) -->
+            <!-- Halaman: Pelatihan -->
             <section id="pelatihan" class="spa-page hidden pt-6 pb-10">
                 <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
                     <h2 class="text-3xl font-bold flex items-center justify-center gap-3 mb-4">
                         <i data-lucide="image" class="text-emerald-500"></i> Dokumentasi Pelatihan
                     </h2>
-                    <p class="text-center text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">Berbagai momen inspiratif saat sesi workshop dan bimbingan teknis.</p>
+                    <p class="text-center text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">Berbagai momen inovatif saat sesi workshop dan bimbingan teknis.</p>
                     
                     <div id="pelatihan-gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
                         <!-- Data dimasukkan oleh Javascript -->
@@ -281,7 +283,7 @@
                 </div>
             </section>
 
-            <!-- Halaman: Sosial Media (Dinamis) -->
+            <!-- Halaman: Sosial Media -->
             <section id="sosmed" class="spa-page hidden pt-6 pb-10">
                 <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
                     <h2 class="text-3xl font-bold flex items-center justify-center gap-3 mb-4"><i data-lucide="share-2" class="text-blue-500"></i> Sosial Media</h2>
@@ -303,7 +305,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                        <!-- Sisi Kiri: Informasi Kontak & Layanan -->
+                        <!-- Sisi Kiri: Informasi Kontak -->
                         <div class="lg:col-span-5 space-y-6">
                             <div class="bg-white/50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm space-y-6">
                                 <h3 class="text-lg font-bold text-slate-900 dark:text-white pb-3 border-b border-slate-200 dark:border-slate-800">Informasi Kontak</h3>
@@ -421,7 +423,7 @@
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
                         
-                        <!-- KELOLA PRESTASI (BARU) -->
+                        <!-- KELOLA PRESTASI -->
                         <div class="space-y-4">
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="trophy" class="w-5 h-5 text-yellow-500"></i> Kelola Prestasi</h3>
                             <div id="admin-prestasi-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
@@ -497,7 +499,7 @@
                                 </div>
                                 <div class="flex gap-2">
                                     <button type="button" id="btn-gal-action" onclick="saveGalleryItem()" class="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 flex justify-center items-center gap-2">
-                                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
+                                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah Foto Galeri
                                     </button>
                                     <button type="button" id="btn-gal-cancel" onclick="cancelEditGalleryItem()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
                                         Batal
@@ -542,6 +544,26 @@
 
         </div>
     </main>
+
+    <!-- KATA SANDI MODAL POPUP -->
+    <div id="password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/60 backdrop-blur-sm px-4">
+        <div class="glass w-full max-w-md p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col items-center gap-4 text-center">
+            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-md">
+                <i data-lucide="lock" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Akses Terkunci</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Harap masukkan kata sandi Anda untuk mengakses Panel Admin</p>
+            </div>
+            <div class="w-full relative">
+                <input type="password" id="admin-password-input" placeholder="Masukkan kata sandi..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-center focus:ring-2 focus:ring-blue-500 outline-none text-sm tracking-widest font-bold">
+            </div>
+            <div class="flex gap-2 w-full">
+                <button onclick="closePasswordModal()" class="flex-1 py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                <button onclick="submitAdminPassword()" class="flex-1 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-md transition-colors">Masuk</button>
+            </div>
+        </div>
+    </div>
 
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toast-container" class="fixed bottom-20 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
@@ -626,7 +648,11 @@
 
     <!-- JavaScript Data, Interaction & SPA Router -->
     <script>
-        // 1. Fungsi showToast diletakkan di paling atas untuk global availability
+        // ----------------------------------------------------
+        // DEFINISI FUNGSI UTAMA DI LETAKKAN DI BARIS TERATAS SKRIP
+        // ----------------------------------------------------
+
+        // Sistem notifikasi mengambang (Toast)
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             if (!container) return;
@@ -666,7 +692,7 @@
             }, 4500);
         }
 
-        // 2. Data Utama Portofolio (In-Memory Fallback)
+        // Data Utama Portofolio (In-Memory Fallback)
         const defaultData = {
             heroName: "noviyalpg,",
             heroTitle: " S.Pd., M.T.",
@@ -710,13 +736,43 @@
         // Inisialisasi Data Portofolio Aktif
         let portfolioData = JSON.parse(JSON.stringify(defaultData));
 
-        // URL Google Apps Script yang Dikunci Secara Permanen
+        // URL Google Apps Script yang Dikunci Secara Permanen (Sesuai Permintaan)
         const GAS_URL = "https://script.google.com/macros/s/AKfycbwxzu4PXETHnJvBQNJWareW4jcz8F2wZ6O_l2FnbI61N0YXUDkfyxH9YG4Hji52tVA/exec";
 
         let editExpIdx = -1;
         let editCertIdx = -1;
         let editGalIdx = -1;
         let editSocIdx = -1;
+
+        // LOGIKA PROTEKSI KATA SANDI PANEL ADMIN
+        function handleAdminAccess() {
+            // Tampilkan Modal Jendela Input Password
+            const modal = document.getElementById('password-modal');
+            const passInput = document.getElementById('admin-password-input');
+            if (passInput) passInput.value = '';
+            if (modal) modal.classList.remove('hidden');
+            if (passInput) passInput.focus();
+        }
+
+        function closePasswordModal() {
+            const modal = document.getElementById('password-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function submitAdminPassword() {
+            const passInput = document.getElementById('admin-password-input');
+            if (!passInput) return;
+            // Password yang disetel: k0nslet
+            if (passInput.value === "k0nslet") {
+                closePasswordModal();
+                showToast("Akses diizinkan! Selamat datang di Panel Admin.", "success");
+                window.location.hash = "admin";
+            } else {
+                showToast("Kata sandi salah! Akses ditolak.", "error");
+                passInput.value = '';
+                passInput.focus();
+            }
+        }
 
         // SVG Logo Resmi Sosmed Berwarna dan High-Fidelity
         function getSosmedLogoSVG(platform) {
@@ -819,7 +875,7 @@
                         </div>
                     </div>
                 </div>
-            `}).join('');
+            `; }).join('');
 
             // Render Sertifikasi
             const certContainer = document.getElementById('sertifikasi-container');
@@ -868,7 +924,7 @@
                         <p class="text-sm text-slate-500">${item.desc}</p>
                     </div>
                 </a>
-            `}).join('');
+            `; }).join('');
 
             // Render Ulang List di Panel Admin
             renderAdminLists();
@@ -994,7 +1050,8 @@
                     const cloudDb = resData.data;
                     
                     // Cek kekosongan data. Jika tidak ada property 'heroName', berarti butuh inisialisasi awal.
-                    if (Object.keys(cloudDb).length === 0 || !cloudDb.heroName) {
+                    const isSheetEmpty = Object.keys(cloudDb).length === 0 || !cloudDb.heroName;
+                    if (isSheetEmpty) {
                          showToast("Spreadsheet kosong. Menginisialisasi tabel secara otomatis...", "info");
                          await fetch(GAS_URL + "?action=setup", { method: 'GET', redirect: 'follow' });
                          setTimeout(autoLoadCloud, 2000); 
@@ -1057,40 +1114,53 @@
         }
 
         // Simpan Form Utama Profil & Tentang
-        document.getElementById('admin-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const heroImgUrl = document.getElementById('admin-hero-img').value;
-            const aboutImgUrl = document.getElementById('admin-about-img').value;
-            
-            if (heroImgUrl && !heroImgUrl.includes('imgur.com') && !heroImgUrl.includes('ui-avatars.com')) {
-                showToast('Wajib menggunakan URL dari imgur.com untuk foto profil!', 'error');
-                return;
-            }
-            if (aboutImgUrl && !aboutImgUrl.includes('imgur.com') && !aboutImgUrl.includes('unsplash.com') && !aboutImgUrl.includes('images.unsplash.com')) {
-                showToast('Wajib menggunakan URL dari imgur.com untuk foto tentang!', 'error');
-                return;
-            }
-            
-            portfolioData.heroName = document.getElementById('admin-hero-name').value;
-            portfolioData.heroTitle = document.getElementById('admin-hero-title').value;
-            portfolioData.heroSubtitle = document.getElementById('admin-hero-subtitle').value;
-            portfolioData.heroDesc = document.getElementById('admin-hero-desc').value;
-            portfolioData.heroImg = heroImgUrl;
-            portfolioData.aboutDesc = document.getElementById('admin-about-desc').value;
-            portfolioData.aboutImg = aboutImgUrl;
+        const adminForm = document.getElementById('admin-form');
+        if (adminForm) {
+            adminForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const heroImgUrl = document.getElementById('admin-hero-img').value;
+                const aboutImgUrl = document.getElementById('admin-about-img').value;
+                
+                if (heroImgUrl && !heroImgUrl.includes('imgur.com') && !heroImgUrl.includes('ui-avatars.com')) {
+                    showToast('Wajib menggunakan URL dari imgur.com untuk foto profil!', 'error');
+                    return;
+                }
+                if (aboutImgUrl && !aboutImgUrl.includes('imgur.com') && !aboutImgUrl.includes('unsplash.com') && !aboutImgUrl.includes('images.unsplash.com')) {
+                    showToast('Wajib menggunakan URL dari imgur.com untuk foto tentang!', 'error');
+                    return;
+                }
+                
+                portfolioData.heroName = document.getElementById('admin-hero-name').value;
+                portfolioData.heroTitle = document.getElementById('admin-hero-title').value;
+                portfolioData.heroSubtitle = document.getElementById('admin-hero-subtitle').value;
+                portfolioData.heroDesc = document.getElementById('admin-hero-desc').value;
+                portfolioData.heroImg = heroImgUrl;
+                portfolioData.aboutDesc = document.getElementById('admin-about-desc').value;
+                portfolioData.aboutImg = aboutImgUrl;
 
-            // Simpan Perubahan Nilai Statistik
-            portfolioData.statPelatihan = document.getElementById('admin-stat-pelatihan').value;
-            portfolioData.statPeserta = document.getElementById('admin-stat-peserta').value;
-            portfolioData.statSertifikasi = document.getElementById('admin-stat-sertifikasi').value;
-            portfolioData.statLembaga = document.getElementById('admin-stat-lembaga').value;
+                // Simpan Perubahan Nilai Statistik
+                portfolioData.statPelatihan = document.getElementById('admin-stat-pelatihan').value;
+                portfolioData.statPeserta = document.getElementById('admin-stat-peserta').value;
+                portfolioData.statSertifikasi = document.getElementById('admin-stat-sertifikasi').value;
+                portfolioData.statLembaga = document.getElementById('admin-stat-lembaga').value;
 
-            renderData();
-            autoSaveToCloud(); // Otomatis simpan ke Cloud
-        });
+                renderData();
+                autoSaveToCloud(); // Otomatis simpan ke Cloud
+            });
+        }
+
+        // Jalankan enter key di input password dengan null checking yang aman
+        const adminPasswordInput = document.getElementById('admin-password-input');
+        if (adminPasswordInput) {
+            adminPasswordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    submitAdminPassword();
+                }
+            });
+        }
 
         // ==========================================
-        //  Fungsi-Fungsi Modul (Prestasi) - BARU
+        //  Fungsi-Fungsi Modul (Prestasi)
         // ==========================================
         function startEditPrestasi(idx) {
             editCertIdx = idx;
@@ -1301,15 +1371,6 @@
             autoSaveToCloud();
         }
 
-        function deleteGalleryItem(idx) { 
-            if (confirm('Hapus foto dari galeri?')) { 
-                if (editGalIdx === idx) cancelEditGalleryItem();
-                portfolioData.gallery.splice(idx, 1); 
-                renderData(); 
-                autoSaveToCloud();
-            } 
-        }
-
         // ==========================================
         //  Fungsi-Fungsi Modul (Sosmed)
         // ==========================================
@@ -1334,9 +1395,6 @@
             lucide.createIcons();
         }
 
-        // ==========================================
-        //  Fungsi Simpan Sosmed
-        // ==========================================
         function saveSosmed() {
             const platform = document.getElementById('new-soc-platform').value;
             const label = document.getElementById('new-soc-platform').options[document.getElementById('new-soc-platform').selectedIndex].text;
@@ -1421,12 +1479,12 @@
             isChatbotOpen = !isChatbotOpen;
             
             if (isChatbotOpen) {
-                win.classList.remove('hidden');
+                if (win) win.classList.remove('hidden');
                 if (iconContainer) {
                     iconContainer.innerHTML = '<i data-lucide="chevron-down" class="w-6 h-6"></i>';
                 }
             } else {
-                win.classList.add('hidden');
+                if (win) win.classList.add('hidden');
                 if (iconContainer) {
                     iconContainer.innerHTML = '<i data-lucide="message-square" class="w-6 h-6"></i>';
                 }
@@ -1439,12 +1497,14 @@
         }
 
         function sendQuickReply(text) {
-            document.getElementById('chatbot-input').value = text;
+            const chatbotInput = document.getElementById('chatbot-input');
+            if (chatbotInput) chatbotInput.value = text;
             submitUserChat();
         }
 
         function submitUserChat() {
             const inputEl = document.getElementById('chatbot-input');
+            if (!inputEl) return;
             const text = inputEl.value.trim();
             if (!text) return;
 
@@ -1459,6 +1519,7 @@
 
         function appendChatMessage(text, sender) {
             const msgArea = document.getElementById('chatbot-messages');
+            if (!msgArea) return;
             
             let messageHtml = '';
             if (sender === 'user') {
@@ -1493,13 +1554,13 @@
                 return `Halo! Saya adalah Asisten Virtual dari **${cleanName}**. \n\nAda yang bisa saya bantu terkait profil narasumber, riwayat karir, sertifikasi, atau penawaran kerja sama?`;
             }
             if (query.includes('siapa') || query.includes('profil') || query.includes('tentang') || query.includes('biodata') || query.includes('nama')) {
-                return `Beliau adalah **${cleanName}${data.heroTitle}**.\nSeorang **${data.heroSubtitle}**.\n\nFilosofi mengajar beliau: ${data.heroDesc}\n\nIngin tahu pengalaman kerja atau sertifikasinya? Ketik saja "pengalaman" o "sertifikat".`;
+                return `Beliau adalah **${cleanName}${data.heroTitle}**.\nSeorang **${data.heroSubtitle}**.\n\nFilosofi mengajar beliau: ${data.heroDesc}\n\nIngin tahu pengalaman kerja atau sertifikasinya? Ketik saja "pengalaman" atau "sertifikat".`;
             }
             if (query.includes('kontak') || query.includes('hubungi') || query.includes('email') || query.includes('wa') || query.includes('whatsapp') || query.includes('domisili')) {
                 return `Anda dapat menghubungi **${cleanName}** melalui jalur resmi berikut:\n\n` +
                        `📧 **Email Bisnis**: noviyachannel@gmail.com\n` +
                        `💬 **WhatsApp**: +62 812-3456-789\n` +
-                       `📍 **Kantor**: Campang Jaya, Bandar Lampung, Lampung\n\n` +
+                       `📍 **Domisili**: Campang Jaya, Bandar Lampung, Lampung\n\n` +
                        `Anda juga dapat melayangkan proposal resmi dengan mengisi formulir di halaman *Hubungi Saya*!`;
             }
             if (query.includes('pengalaman') || query.includes('karir') || query.includes('kerja') || query.includes('riwayat')) {
@@ -1550,19 +1611,21 @@
         }
 
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
+            if (html) html.classList.add('dark');
             updateThemeIcon(true);
         } else {
-            html.classList.remove('dark');
+            if (html) html.classList.remove('dark');
             updateThemeIcon(false);
         }
         
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const isDark = html.classList.contains('dark');
-            localStorage.theme = isDark ? 'dark' : 'light';
-            updateThemeIcon(isDark);
-        });
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                if (html) html.classList.toggle('dark');
+                const isDark = html ? html.classList.contains('dark') : false;
+                localStorage.theme = isDark ? 'dark' : 'light';
+                updateThemeIcon(isDark);
+            });
+        }
 
         const menuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1572,12 +1635,12 @@
         function toggleMenu(show) {
             isMenuOpen = show !== undefined ? show : !isMenuOpen;
             if (isMenuOpen) {
-                mobileMenu.classList.remove('hidden');
+                if (mobileMenu) mobileMenu.classList.remove('hidden');
                 if (menuIconContainer) {
                     menuIconContainer.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
                 }
             } else {
-                mobileMenu.classList.add('hidden');
+                if (mobileMenu) mobileMenu.classList.add('hidden');
                 if (menuIconContainer) {
                     menuIconContainer.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
                 }
@@ -1585,7 +1648,9 @@
             lucide.createIcons();
         }
 
-        menuButton.addEventListener('click', () => toggleMenu());
+        if (menuButton) {
+            menuButton.addEventListener('click', () => toggleMenu());
+        }
 
         function router() {
             let hash = window.location.hash.substring(1) || 'beranda';
@@ -1593,8 +1658,10 @@
             if (!validPages.includes(hash)) hash = 'beranda';
 
             document.querySelectorAll('.spa-page').forEach(page => {
-                page.classList.add('hidden');
-                page.classList.remove('animate-fadeIn');
+                if (page) {
+                    page.classList.add('hidden');
+                    page.classList.remove('animate-fadeIn');
+                }
             });
 
             const targetPage = document.getElementById(hash);
@@ -1605,7 +1672,11 @@
             }
 
             document.querySelectorAll('.nav-link').forEach(link => {
-                const linkHash = link.getAttribute('href').substring(1);
+                if (!link) return;
+                const href = link.getAttribute('href');
+                if (!href) return; // Lewati elemen tombol atau tautan dinamis tanpa href secara aman!
+                
+                const linkHash = href.substring(1);
                 link.classList.remove('text-blue-600', 'dark:text-blue-400');
                 if(!link.classList.contains('bg-gradient-to-r') && !link.classList.contains('bg-blue-50') && !link.classList.contains('border')) {
                     link.classList.add('text-slate-600', 'dark:text-slate-300');
