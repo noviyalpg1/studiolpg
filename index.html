@@ -1,681 +1,1636 @@
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html lang="id" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studiolpg - Simulasi Interaktif</title>
-    <!-- Menggunakan font Plus Jakarta Sans agar selaras dengan website utama -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Portofolio - noviyalpg, S.Pd., M.T.</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e40af', // deep blue
+                        secondary: '#3b82f6', // blue
+                    },
+                    animation: {
+                        fadeIn: "fadeIn 0.5s ease-out forwards",
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            "0%": { opacity: "0", transform: "translateY(15px)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        :root {
-            /* Warna disesuaikan dengan tema Neutral & Amber website utama */
-            --bg-color: #171717; /* Sesuai dengan bg-neutral-900 */
-            --text-main: #ffffff;
-            --text-muted: #a3a3a3; /* text-neutral-400 */
-            --primary-glow: #f59e0b; /* text-amber-500 */
-            --secondary-glow: #f97316; /* text-orange-500 */
-            --tertiary-glow: #fbbf24; /* text-amber-400 */
-            --glass-bg: rgba(23, 23, 23, 0.6);
-            --glass-border: rgba(245, 158, 11, 0.2);
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden; /* Mencegah scrolling, hanya 1 layar */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        /* --- Ambient Background Animations --- */
-        .ambient-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        /* Layer Background Gambar Baru */
-        .bg-image-layer {
-            position: absolute;
-            top: -5%; /* Sedikit diperlebar untuk mencegah tepi tajam saat diblur */
-            left: -5%;
-            width: 110%;
-            height: 110%;
-            background-image: url('https://i.imgur.com/FzTzke1.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4; /* Transparansi gambar (0.0 sampai 1.0) */
-            filter: blur(5px); /* Efek blur/kabur */
-            z-index: -1;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 20s infinite ease-in-out alternate;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary-glow);
-            top: -10%;
-            left: -10%;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: var(--secondary-glow);
-            bottom: -20%;
-            right: -10%;
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            width: 300px;
-            height: 300px;
-            background: var(--tertiary-glow); 
-            top: 40%;
-            left: 60%;
-            opacity: 0.2;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-
-        /* --- Splash Screen --- */
-        .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--bg-color);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
-        }
-
-        .splash-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .splash-logo-wrapper {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .splash-logo {
-            width: 100%;
-            height: auto;
-            z-index: 2;
-            animation: splash-pulse 2s infinite alternate;
-            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.8));
-        }
-
-        .splash-glow {
-            position: absolute;
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 60%);
-            border-radius: 50%;
-            z-index: 1;
-            animation: splash-glow-pulse 2s infinite alternate;
-        }
-
-        .splash-text {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 2.5rem;
-            color: white;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .splash-loading-bar {
-            width: 250px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .splash-loading-fill {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0%;
-            background: var(--primary-glow);
-            box-shadow: 0 0 10px var(--primary-glow);
-            animation: loading-progress 2.5s cubic-bezier(0.8, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes splash-pulse {
-            0% { transform: scale(0.95); }
-            100% { transform: scale(1.05); }
-        }
-
-        @keyframes splash-glow-pulse {
-            0% { opacity: 0.5; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-
-        @keyframes loading-progress {
-            0% { width: 0%; }
-            40% { width: 60%; }
-            80% { width: 80%; }
-            100% { width: 100%; }
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Label Kiri Atas --- */
-        .top-left-label {
-            position: absolute;
-            top: 1.5rem; /* Dibuat mepet ke atas */
-            left: 1.5rem; /* Dibuat mepet ke kiri */
-            width: 75px; /* Ukuran standar logo website */
-            height: auto;
-            z-index: 20;
-            opacity: 0;
-            transition: all 0.5s ease;
-            /* Efek cahaya kuning (amber glow) berlapis */
-            filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.8)) drop-shadow(0 0 25px rgba(245, 158, 11, 0.4));
-        }
-
-        /* Efek hover untuk interaktivitas */
-        .top-left-label:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 1)) drop-shadow(0 0 30px rgba(245, 158, 11, 0.6));
-        }
-
-        body.app-loaded .top-left-label {
-            animation: fadeIn 1s ease forwards;
-            animation-delay: 0.5s; /* Muncul setelah splash screen selesai */
-        }
-
-        /* --- Footer Info --- */
-        .footer-info {
-            display: flex;
-            gap: 4rem;
-            margin-top: 3.5rem;
-            align-items: flex-start;
-        }
-
-        .info-block {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .info-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        .info-value {
-            font-size: 1.05rem;
-            color: var(--text-main);
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .link-hover:hover {
-            color: var(--primary-glow);
-            text-decoration: underline;
-            text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
-        }
-
-        /* --- Main Layout & Glassmorphism --- */
-        .hero-container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 4rem 6rem;
-            width: 96vw; /* Diperbesar hingga 96% dari lebar layar */
-            height: 94vh; /* Diperbesar hingga 94% dari tinggi layar */
-            max-width: 1800px; /* Batas maksimal sangat diperbesar */
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* --- Text Section --- */
-        .text-section {
-            flex: 1;
-            padding-right: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        body.app-loaded .text-section {
-            animation: slideUpFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .text-amber {
-            color: var(--primary-glow);
+        /* Custom scrollbar for chatbot */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
         }
-
-        p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-            max-width: 90%;
-        }
-
-        /* --- Button Styling --- */
-        .start-btn {
-            position: relative;
-            background: transparent;
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            padding: 1rem 3.5rem;
-            border: 2px solid var(--primary-glow);
-            border-radius: 50px;
-            cursor: pointer;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            /* Glow amber */
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2), inset 0 0 10px rgba(245, 158, 11, 0.1);
-        }
-
-        .start-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent);
-            transition: all 0.5s ease;
-            z-index: -1;
-        }
-
-        .start-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.6), inset 0 0 20px rgba(245, 158, 11, 0.4);
-            background: rgba(245, 158, 11, 0.1);
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-        }
-
-        .start-btn:hover::before {
-            left: 100%;
-        }
-
-        .start-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* --- Visual / Preview Section (Desktop Horizontal Layout) --- */
-        .visual-section {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        body.app-loaded .visual-section {
-            animation: slideUpFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-            animation-delay: 0.2s;
-        }
-
-        .abstract-preview {
-            width: 100%;
-            max-width: 350px;
-            aspect-ratio: 1 / 1;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Efek background hitam, border, shadow, dan blur dihapus 
-               agar gambar tidak lagi dibatasi oleh lingkaran */
-        }
-
-        /* Efek glow berdenyut di belakang logo */
-        .core-glow {
-            position: absolute;
-            width: 100%; /* Diperbesar agar cahayanya lebih menyebar */
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.5) 0%, rgba(245, 158, 11, 0.15) 45%, transparent 75%);
-            animation: pulse 3s infinite alternate;
-            z-index: 1;
-        }
-
-        /* Styling integrasi Logo Imgur */
-        .core-logo {
-            width: 85%; /* Diperbesar ukurannya dari 65% menjadi 85% */
-            height: auto;
-            z-index: 2;
-            object-fit: contain;
-            animation: float-logo 4s ease-in-out infinite;
-            /* Efek drop-shadow cahaya berlapis untuk glow yang sangat kuat */
-            filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.9)) 
-                    drop-shadow(0 0 50px rgba(245, 158, 11, 0.5)) 
-                    drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
-        }
-
-        /* Cincin luar yang berputar lambat */
-        .ring-outer {
-            position: absolute;
-            width: 120%;
-            height: 120%;
-            border: 2px dashed rgba(245,158,11,0.3);
-            border-radius: 50%;
-            animation: spin 25s linear infinite;
-        }
-
-        /* Cincin dalam yang berputar berlawanan arah (efek sci-fi) */
-        .ring-inner {
-            position: absolute;
-            width: 105%;
-            height: 105%;
-            border: 2px solid transparent;
-            border-top: 2px solid rgba(245,158,11,0.6);
-            border-bottom: 2px solid rgba(245,158,11,0.6);
-            border-radius: 50%;
-            animation: spin-reverse 15s linear infinite;
-        }
-
-        @keyframes slideUpFade {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.1); opacity: 1; }
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes spin-reverse {
-            100% { transform: rotate(-360deg); }
-        }
-
-        @keyframes float-logo {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-12px) scale(1.05); }
-        }
-
-        /* --- App Starting Transition State --- */
-        .hero-container.launching {
-            transform: scale(1.5) translateZ(50px);
-            opacity: 0;
-            filter: blur(20px);
-            pointer-events: none;
-        }
-
-        /* --- Responsiveness --- */
-        
-        /* Landscape (Layar Lebar tapi Pendek / HP Dimiringkan) */
-        @media (max-height: 600px) and (orientation: landscape) {
-            .hero-container {
-                padding: 1.5rem 3rem;
-            }
-            .top-left-label {
-                top: 1rem;
-                left: 1rem;
-                width: 55px;
-            }
-            h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-            p { font-size: 1rem; margin-bottom: 1.5rem; }
-            .abstract-preview { max-width: 220px; }
-            .start-btn { padding: 0.8rem 2rem; font-size: 1.1rem; }
-        }
-
-        /* Portrait Mobile (Layar Sempit / HP Potret) */
-        @media (max-width: 900px) and (orientation: portrait), (max-width: 600px) {
-            .hero-container {
-                flex-direction: column;
-                padding: 2.5rem 2rem;
-                text-align: center;
-                gap: 2rem;
-                width: 96vw;
-                height: 96vh; /* Memaksimalkan tinggi layar HP */
-                max-height: 96vh;
-                justify-content: center;
-            }
-
-            .top-left-label {
-                top: 1rem; /* Sangat mepet untuk layar mobile */
-                left: 1rem;
-                width: 55px; /* Disesuaikan (diperkecil) untuk layar mobile */
-            }
-
-            .text-section {
-                padding-right: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            h1 {
-                font-size: 3rem;
-            }
-
-            p {
-                font-size: 1.1rem;
-                max-width: 100%;
-                margin-bottom: 2rem;
-            }
-
-            /* Memperpendek teks di mobile */
-            .hide-mobile {
-                display: none;
-            }
-
-            /* Tombol besar untuk sentuhan jari */
-            .start-btn {
-                width: 100%;
-                max-width: 100%;
-                padding: 1.5rem;
-                font-size: 1.5rem;
-                border-radius: 100px;
-            }
-
-            .footer-info {
-                flex-direction: row; /* Mengubah kembali menjadi baris (kiri-kanan) */
-                justify-content: center; /* Menengahkan seluruh blok info */
-                gap: 2rem;
-                margin-top: 2.5rem;
-                width: 100%;
-            }
-
-            .info-block {
-                align-items: flex-start; /* Teks di dalam masing-masing blok rata kiri */
-                text-align: left;
-            }
-
-            .visual-section {
-                order: -1; /* Simulasi di atas, kontrol di bawah */
-                width: 100%;
-            }
-
-            .abstract-preview {
-                max-width: 260px;
-            }
-        }
-
-        /* Layar HP Sangat Kecil */
-        @media (max-width: 400px) {
-            .hero-container { padding: 1.5rem; gap: 1.5rem; }
-            h1 { font-size: 2.5rem; }
-            .abstract-preview { max-width: 220px; }
-            .start-btn { padding: 1.2rem; font-size: 1.3rem; }
-            
-            /* Penyesuaian agar teks tetap muat bersebelahan di layar sangat sempit */
-            .footer-info { gap: 1rem; margin-top: 1.5rem; }
-            .info-label { font-size: 0.75rem; }
-            .info-value { font-size: 0.9rem; }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased relative h-full flex flex-col">
 
-    <!-- Splash Screen -->
-    <div id="splashScreen" class="splash-screen">
-        <div class="splash-logo-wrapper">
-            <div class="splash-glow"></div>
-            <!-- Mengganti gambar pada splash screen -->
-            <img src="https://i.imgur.com/2rqZrlH.png" alt="Logo" class="splash-logo">
-        </div>
-        <div class="splash-text"><span class="text-amber">Studio</span>lpg</div>
-        <div class="splash-loading-bar">
-            <div class="splash-loading-fill"></div>
-        </div>
+    <!-- Background Decoration (Tema Biru Elegan Minimalis) -->
+    <div class="fixed inset-0 pointer-events-none z-0 transition-colors duration-300 bg-gradient-to-tr from-slate-50 via-blue-50/30 to-indigo-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <!-- Pendaran cahaya biru yang sangat lembut di pojok atas & bawah -->
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 dark:bg-blue-500/10 rounded-full filter blur-[120px]"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full filter blur-[120px]"></div>
     </div>
 
-    <!-- Animasi Background Blur -->
-    <div class="ambient-bg">
-        <div class="bg-image-layer"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#beranda" class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">N</div>
+                    <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+                        noviyalpg
+                    </span>
+                </a>
 
-    <!-- Konten Utama (Glassmorphism Card) -->
-    <main class="hero-container" id="heroContainer">
-        
-        <!-- Label Pojok Kiri Atas -->
-        <img src="https://i.imgur.com/2rqZrlH.png" alt="Label" class="top-left-label">
-
-        <!-- Sisi Kiri: Teks & Tombol -->
-        <section class="text-section">
-            <!-- Judul disesuaikan agar sama persis seperti di navbar website utama -->
-            <h1><span class="text-amber">Studio</span>lpg</h1>
-            <p>Akses media pembelajaran <span class="hide-mobile">untuk mendukung proses belajar mengajarmu</span></p>
-            <button class="start-btn" id="startBtn">START</button>
-            
-            <!-- Footer Info -->
-            <div class="footer-info">
-                <div class="info-block">
-                    <span class="info-label">Presented By :</span>
-                    <span class="info-value">Noviyalpg Creative</span>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-4 lg:space-x-6">
+                    <a href="#beranda" class="nav-link text-sm font-medium transition-colors">Beranda</a>
+                    <a href="#tentang" class="nav-link text-sm font-medium transition-colors">Tentang</a>
+                    <a href="#pengalaman" class="nav-link text-sm font-medium transition-colors">Pengalaman</a>
+                    <a href="#sertifikasi" class="nav-link text-sm font-medium transition-colors">Sertifikasi</a>
+                    <a href="#pelatihan" class="nav-link text-sm font-medium transition-colors">Pelatihan</a>
+                    <a href="#sosmed" class="nav-link text-sm font-medium transition-colors">Sosmed</a>
+                    
+                    <!-- Admin Panel Button at Top -->
+                    <a href="#admin" class="nav-link inline-flex items-center justify-center px-3.5 py-1.5 border border-slate-300 dark:border-slate-700 rounded-full shadow-sm text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover:scale-105 gap-1.5">
+                        <i data-lucide="settings" class="w-4 h-4"></i> Admin Panel
+                    </a>
+                    
+                    <a href="#hubungi" class="nav-link inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all hover:scale-105">Hubungi Saya</a>
                 </div>
-                <div class="info-block">
-                    <span class="info-label">Contact :</span>
-                    <a href="https://s.id/noviyalpg" target="_blank" class="info-value link-hover">https://s.id/noviyalpg</a>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 focus:outline-none">
+                        <span id="menu-icon-container" class="flex items-center justify-center">
+                            <i data-lucide="menu" class="w-6 h-6"></i>
+                        </span>
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Sisi Kanan: Visual Tambahan / Dekorasi Geometris dengan Logo -->
-        <section class="visual-section">
-            <div class="abstract-preview">
-                <div class="ring-outer"></div>
-                <div class="ring-inner"></div>
-                <div class="core-glow"></div>
-                <!-- Mengganti gambar utama -->
-                <img src="https://i.imgur.com/MEUSsuB.png" alt="Studiolpg Logo" class="core-logo">
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-slate-200 dark:border-slate-800 shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#beranda" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Beranda</a>
+                <a href="#tentang" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Tentang</a>
+                <a href="#pengalaman" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Pengalaman</a>
+                <a href="#sertifikasi" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Sertifikasi</a>
+                <a href="#pelatihan" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Pelatihan</a>
+                <a href="#sosmed" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Sosmed</a>
+                <!-- Admin Panel Mobile -->
+                <a href="#admin" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors border-t border-slate-200 dark:border-slate-800 mt-1">Admin Panel</a>
+                <a href="#hubungi" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mt-2">Hubungi Saya</a>
             </div>
-        </section>
+        </div>
+    </nav>
 
+    <!-- Main Content Wrapper -->
+    <main class="flex-grow pt-24 pb-12 z-10 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- SPA PAGES SECTION -->
+
+            <!-- Halaman: Beranda -->
+            <section id="beranda" class="spa-page hidden text-center pt-10 lg:pt-20 pb-10">
+                <div class="relative inline-block mb-6 group">
+                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden relative z-10 bg-slate-200 dark:bg-slate-700">
+                        <img id="hero-img-display" src="" alt="Profile" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 blur-md opacity-50 group-hover:opacity-75 transition-opacity -z-10 scale-105"></div>
+                    <div class="absolute -bottom-2 -right-2 bg-white dark:bg-slate-800 p-2 rounded-full shadow-lg z-20">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-blue-500"></i>
+                    </div>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
+                    <span class="text-slate-900 dark:text-white" id="hero-name-display"></span>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400" id="hero-title-display"></span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium mb-4" id="hero-subtitle-display"></p>
+
+                <p class="max-w-2xl mx-auto text-base md:text-lg text-slate-500 dark:text-slate-400 mb-10 leading-relaxed" id="hero-desc-display"></p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#hubungi" class="px-8 py-3 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-medium hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-lg flex items-center gap-2 hover:-translate-y-1">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Hubungi Saya
+                    </a>
+                    <a href="#tentang" class="px-8 py-3 rounded-full glass font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm flex items-center gap-2 hover:-translate-y-1">
+                        Lihat Profil <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- SEKSI STATISTIK UTAMA (SINKRON CLOUD SECARA OTOMATIS) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12 pt-8 border-t border-slate-200/50 dark:border-slate-800/50">
+                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-pelatihan-display">0</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Jumlah Pelatihan</p>
+                    </div>
+                    
+                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-peserta-display">0</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Total Peserta</p>
+                    </div>
+
+                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="award" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-sertifikasi-display">0</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Jumlah Sertifikasi</p>
+                    </div>
+
+                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="school" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-lembaga-display">0</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Sekolah & Kampus</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Halaman: Tentang (Dengan Seksi Prestasi Baru) -->
+            <section id="tentang" class="spa-page hidden pt-6 pb-10">
+                <div class="space-y-8">
+                    <!-- Bio & Foto -->
+                    <div class="glass rounded-3xl p-8 md:p-12 shadow-lg relative overflow-hidden border border-slate-200/50 dark:border-slate-700/50">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-blue-400 to-indigo-400 opacity-20 rounded-bl-full"></div>
+                        
+                        <div class="flex flex-col md:flex-row gap-8 items-center relative z-10">
+                            <div class="flex-1">
+                                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                                    <i data-lucide="sparkles" class="text-yellow-500"></i> Tentang Saya
+                                </h2>
+                                <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6" id="about-desc-display"></p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                                    <div class="flex items-center gap-4 text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 p-4 rounded-2xl shadow-sm">
+                                        <div class="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-xl"><i data-lucide="map-pin" class="w-5 h-5 text-blue-600 dark:text-blue-400"></i></div>
+                                        <span class="font-medium">Berbasis di Indonesia</span>
+                                    </div>
+                                    <div class="flex items-center gap-4 text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 p-4 rounded-2xl shadow-sm">
+                                        <div class="p-2 bg-violet-100 dark:bg-violet-900/50 rounded-xl"><i data-lucide="mail" class="w-5 h-5 text-violet-600 dark:text-violet-400"></i></div>
+                                        <span class="font-medium">Tersedia untuk Kolaborasi</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-64 shrink-0">
+                                <img id="about-img-display" src="" alt="Tentang" class="w-full h-80 object-cover rounded-2xl shadow-md" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEKSI PRESTASI & PENGHARGAAN (BARU & DINAMIS) -->
+                    <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50 space-y-6">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="trophy" class="text-yellow-500"></i> Prestasi & Penghargaan
+                        </h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Daftar rekaman pencapaian karir, medali, serta penghargaan inovasi instruktur teknologi pendidikan secara nasional.</p>
+                        
+                        <div id="prestasi-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Diisi secara dinamis oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Halaman: Pengalaman (Dinamis) -->
+            <section id="pengalaman" class="spa-page hidden pt-6 pb-10">
+                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-3xl font-bold mb-10 flex items-center justify-center gap-3"><i data-lucide="briefcase" class="text-blue-500"></i> Jejak Karir & Pendidikan</h2>
+                    <div id="pengalaman-container" class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-4 md:ml-6 space-y-10">
+                        <!-- Data dimasukkan oleh Javascript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Halaman: Sertifikasi (Dinamis) -->
+            <section id="sertifikasi" class="spa-page hidden pt-6 pb-10">
+                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-3xl font-bold mb-8 flex items-center justify-center gap-3"><i data-lucide="award" class="text-blue-500"></i> Sertifikasi Profesional</h2>
+                    <div id="sertifikasi-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Data dimasukkan oleh Javascript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Halaman: Pelatihan (Galeri Dinamis) -->
+            <section id="pelatihan" class="spa-page hidden pt-6 pb-10">
+                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-3xl font-bold flex items-center justify-center gap-3 mb-4">
+                        <i data-lucide="image" class="text-emerald-500"></i> Dokumentasi Pelatihan
+                    </h2>
+                    <p class="text-center text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">Berbagai momen inspiratif saat sesi workshop dan bimbingan teknis.</p>
+                    
+                    <div id="pelatihan-gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+                        <!-- Data dimasukkan oleh Javascript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Halaman: Sosial Media (Dinamis) -->
+            <section id="sosmed" class="spa-page hidden pt-6 pb-10">
+                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-3xl font-bold flex items-center justify-center gap-3 mb-4"><i data-lucide="share-2" class="text-blue-500"></i> Sosial Media</h2>
+                    <p class="text-center text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">Mari berjejaring dan berbagi inspirasi seputar dunia pendidikan dan teknologi interaktif melalui platform sosial media berikut.</p>
+                    
+                    <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <!-- Data dimasukkan oleh Javascript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Halaman: Hubungi -->
+            <section id="hubungi" class="spa-page hidden pt-6 pb-10">
+                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-100/50 dark:bg-blue-900/30 rounded-full uppercase tracking-wider">Kolaborasi & Sinergi</span>
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mt-3 mb-4">Kirim Pesan Kolaborasi & Undang Narasumber</h2>
+                        <p class="text-slate-600 dark:text-slate-400">Diskusikan rencana kegiatan workshop atau webinar Anda bersama narasumber secara profesional.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        <!-- Sisi Kiri: Informasi Kontak & Layanan -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <div class="bg-white/50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm space-y-6">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white pb-3 border-b border-slate-200 dark:border-slate-800">Informasi Kontak</h3>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-400 shrink-0"><i data-lucide="mail" class="w-5 h-5"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Bisnis</p>
+                                        <a href="mailto:noviyachannel@gmail.com" class="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-500 transition-colors">noviyachannel@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="p-3 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl text-emerald-600 dark:text-emerald-400 shrink-0"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">WhatsApp Resmi</p>
+                                        <a href="https://wa.me/628123456789" target="_blank" class="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-emerald-500 transition-colors">+62 812-3456-789</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl text-indigo-600 dark:text-indigo-400 shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Domisili Kantor</p>
+                                        <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Campang Jaya, Bandar Lampung, Lampung</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Peta Sebaran Luring -->
+                            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 rounded-2xl shadow-md relative overflow-hidden">
+                                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                                <div class="relative z-10 space-y-3">
+                                    <h4 class="font-bold text-lg flex items-center gap-2"><i data-lucide="globe" class="w-5 h-5"></i> Peta Sebaran Luring</h4>
+                                    <p class="text-sm text-blue-100 leading-relaxed">Siap melayani undangan dinas di seluruh wilayah kepulauan Indonesia. 🇮🇩</p>
+                                    <div class="text-4xl pt-2">🇮🇩</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sisi Kanan: Formulir Kolaborasi -->
+                        <div class="lg:col-span-7">
+                            <form id="collaboration-form" onsubmit="handleSendEmail(event)" class="bg-white/50 dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nama Lengkap *</label>
+                                        <input type="text" id="form-name" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Alamat Email *</label>
+                                        <input type="email" id="form-email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Sekolah / Instansi / Yayasan</label>
+                                    <input type="text" id="form-institution" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Pesan Utama Anda *</label>
+                                    <textarea id="form-message" required rows="5" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm resize-none" placeholder="Tuliskan detail undangan pelatihan, tanggal pelaksanaan, dan ekspektasi kolaborasi Anda..."></textarea>
+                                </div>
+
+                                <button type="submit" id="btn-submit-contact" class="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-md transition-all flex justify-center items-center gap-2 group">
+                                    <span id="btn-submit-text">Kirim Pesan Sekarang</span>
+                                    <span id="btn-submit-icon-container" class="w-4 h-4 flex items-center justify-center">
+                                        <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Halaman: ADMIN DASHBOARD (LENGKAP DENGAN KELOLA PRESTASI) -->
+            <section id="admin" class="spa-page hidden pt-6 pb-10">
+                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                        <i data-lucide="settings" class="text-blue-500"></i> Panel Admin Tersinkronisasi
+                    </h2>
+
+                    <!-- Banner Info Mode Otomatis -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-xl mb-8 flex gap-3 text-indigo-800 dark:text-indigo-200 text-sm shadow-inner">
+                        <i data-lucide="cloud-lightning" class="w-5 h-5 shrink-0 text-indigo-500"></i>
+                        <p><strong>Mode Sinkronisasi Cloud Otomatis:</strong> Setiap perubahan yang Anda buat pada formulir di bawah ini akan <strong>otomatis diperbarui di Google Spreadsheet Anda</strong> secara instan.</p>
+                    </div>
+
+                    <!-- Profil & Tentang Form -->
+                    <form id="admin-form" class="space-y-8 bg-white/50 dark:bg-slate-800/50 p-6 rounded-2xl border dark:border-slate-700">
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700"><i data-lucide="user" class="inline w-5 h-5 mb-1 text-blue-500"></i> Profil & Tentang Saya</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div><label class="block text-sm font-medium mb-1">Nama</label><input type="text" id="admin-hero-name" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block text-sm font-medium mb-1">Gelar / Title</label><input type="text" id="admin-hero-title" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Sub-title Profesi</label><input type="text" id="admin-hero-subtitle" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Kutipan (Quotes)</label><textarea id="admin-hero-desc" rows="2" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></textarea></div>
+                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">URL Foto Profil <span class="text-blue-500">(Wajib imgur.com)</span></label><input type="url" id="admin-hero-img" pattern=".*imgur\.com.*" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Deskripsi Lengkap (Tentang)</label><textarea id="admin-about-desc" rows="3" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></textarea></div>
+                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">URL Foto Tentang <span class="text-blue-500">(Wajib imgur.com)</span></label><input type="url" id="admin-about-img" pattern=".*imgur\.com.*" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                            </div>
+                        </div>
+
+                        <!-- INPUT EDIT STATISTIK UTAMA -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700"><i data-lucide="trending-up" class="inline w-5 h-5 mb-1 text-blue-500"></i> Statistik Beranda</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                                <div><label class="block text-sm font-medium mb-1">Jumlah Pelatihan</label><input type="text" id="admin-stat-pelatihan" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block text-sm font-medium mb-1">Total Peserta</label><input type="text" id="admin-stat-peserta" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block text-sm font-medium mb-1">Jumlah Sertifikasi</label><input type="text" id="admin-stat-sertifikasi" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block text-sm font-medium mb-1">Sekolah & Kampus</label><input type="text" id="admin-stat-lembaga" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors shadow-md flex items-center gap-2">
+                            <i data-lucide="save" class="w-4 h-4"></i> Simpan & Sinkron Profil & Statistik
+                        </button>
+                    </form>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+                        
+                        <!-- KELOLA PRESTASI (BARU) -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="trophy" class="w-5 h-5 text-yellow-500"></i> Kelola Prestasi</h3>
+                            <div id="admin-prestasi-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                                    <input type="text" id="new-pres-year" placeholder="Tahun (Cth: 2024)" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="text" id="new-pres-title" placeholder="Nama Prestasi" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="text" id="new-pres-giver" placeholder="Penyelenggara / Instansi" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" id="btn-pres-action" onclick="savePrestasi()" class="flex-1 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 flex justify-center items-center gap-2">
+                                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
+                                    </button>
+                                    <button type="button" id="btn-pres-cancel" onclick="cancelEditPrestasi()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
+                                        Batal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KELOLA PENGALAMAN -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-blue-500"></i> Kelola Pengalaman</h3>
+                            <div id="admin-pengalaman-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                                    <input type="text" id="new-exp-period" placeholder="Waktu (Cth: 2021-Skrg)" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="text" id="new-exp-role" placeholder="Posisi / Gelar" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="text" id="new-exp-inst" placeholder="Nama Instansi" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <textarea id="new-exp-desc" rows="2" placeholder="Deskripsi Singkat" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none resize-none"></textarea>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" id="btn-exp-action" onclick="savePengalaman()" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex justify-center items-center gap-2">
+                                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
+                                    </button>
+                                    <button type="button" id="btn-exp-cancel" onclick="cancelEditPengalaman()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
+                                        Batal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KELOLA SERTIFIKASI -->
+                        <div class="space-y-4 font-normal">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="award" class="w-5 h-5 text-violet-500"></i> Kelola Sertifikasi</h3>
+                            <div id="admin-sertifikasi-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                                    <input type="text" id="new-cert-title" placeholder="Judul Sertifikasi" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="text" id="new-cert-issuer" placeholder="Penerbit (Cth: Google)" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="url" id="new-cert-img" placeholder="URL Foto (Wajib imgur.com)" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" id="btn-cert-action" onclick="saveSertifikasi()" class="flex-1 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 flex justify-center items-center gap-2">
+                                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
+                                    </button>
+                                    <button type="button" id="btn-cert-cancel" onclick="cancelEditSertifikasi()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
+                                        Batal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KELOLA GALERI PELATIHAN -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="image" class="w-5 h-5 text-emerald-500"></i> Kelola Galeri Pelatihan</h3>
+                            <div id="admin-gallery-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                                    <input type="text" id="new-gal-title" placeholder="Judul Kegiatan" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="text" id="new-gal-loc" placeholder="Lokasi & Tahun" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="url" id="new-gal-img" placeholder="URL Foto (Wajib imgur.com)" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" id="btn-gal-action" onclick="saveGalleryItem()" class="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 flex justify-center items-center gap-2">
+                                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
+                                    </button>
+                                    <button type="button" id="btn-gal-cancel" onclick="cancelEditGalleryItem()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
+                                        Batal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KELOLA SOSIAL MEDIA -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="share-2" class="text-pink-500"></i> Kelola Sosial Media</h3>
+                            <div id="admin-sosmed-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                                    <select id="new-soc-platform" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none text-slate-700 dark:text-slate-200">
+                                        <option value="youtube">YouTube</option>
+                                        <option value="instagram">Instagram</option>
+                                        <option value="tiktok">TikTok</option>
+                                        <option value="facebook">Facebook</option>
+                                        <option value="globe">Blog / Website</option>
+                                        <option value="message-circle">WhatsApp</option>
+                                        <option value="linkedin">LinkedIn</option>
+                                        <option value="twitter">X / Twitter</option>
+                                    </select>
+                                    <input type="text" id="new-soc-desc" placeholder="Deskripsi Singkat" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                    <input type="url" id="new-soc-url" placeholder="URL Profil Sosmed (https://...)" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" id="btn-soc-action" onclick="saveSosmed()" class="flex-1 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 flex justify-center items-center gap-2">
+                                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah Sosmed
+                                    </button>
+                                    <button type="button" id="btn-soc-cancel" onclick="cancelEditSosmed()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
+                                        Batal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </main>
 
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-20 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+    <!-- WIDGET CHATBOT AI INTERAKTIF / ASISTEN VIRTUAL -->
+    <div class="fixed bottom-6 right-20 z-40">
+        <!-- Floating Chatbot Toggle Button -->
+        <button id="chatbot-toggle" onclick="toggleChatbot()" class="p-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center relative group">
+            <span id="chatbot-icon-container" class="w-6 h-6 flex items-center justify-center">
+                <i data-lucide="message-square" class="w-6 h-6"></i>
+            </span>
+            <span class="absolute right-14 bg-slate-900 text-white text-xs px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">Tanya Asisten Virtual</span>
+        </button>
+
+        <!-- Chat Window Panel -->
+        <div id="chatbot-window" class="hidden absolute bottom-16 right-0 w-80 sm:w-96 h-[480px] rounded-2xl glass border border-slate-200/50 dark:border-slate-800/50 shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
+            <!-- Header -->
+            <div class="p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold relative shrink-0">
+                        N
+                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-400 border-2 border-indigo-600"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">Asisten Virtual</h4>
+                        <p class="text-[10px] text-blue-100 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Aktif & Siap Membantu</p>
+                    </div>
+                </div>
+                <button onclick="toggleChatbot()" class="p-1 rounded-lg hover:bg-white/10 transition-colors text-white">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Chat Area (Scrollable) -->
+            <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto space-y-3 scroll-smooth text-sm bg-slate-50/50 dark:bg-slate-950/50">
+                <!-- Bot Welcome Message -->
+                <div class="flex gap-2 items-start max-w-[85%]">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">N</div>
+                    <div class="bg-white dark:bg-slate-900 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/50 dark:border-slate-800/50 text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Halo! Saya adalah Asisten Virtual dari **noviyalpg**. Ada yang bisa saya bantu terkait informasi profil, pengalaman, sertifikasi, atau jadwal narasumber?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Suggestions (Chips) -->
+            <div class="px-4 py-2 flex gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none border-t border-slate-100 dark:border-slate-900/60 bg-white/30 dark:bg-slate-900/30 shrink-0">
+                <button onclick="sendQuickReply('Siapa noviyalpg?')" class="text-xs px-2.5 py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Siapa noviyalpg?</button>
+                <button onclick="sendQuickReply('Bagaimana cara kolaborasi?')" class="text-xs px-2.5 py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Undang Narasumber</button>
+                <button onclick="sendQuickReply('Minta WhatsApp & Email')" class="text-xs px-2.5 py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Minta Kontak</button>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900 flex gap-2 shrink-0">
+                <input type="text" id="chatbot-input" onkeypress="handleChatKeyPress(event)" placeholder="Ketik pertanyaan Anda di sini..." class="flex-1 px-4 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                <button onclick="submitUserChat()" class="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all flex items-center justify-center">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass border-t border-slate-200 dark:border-slate-800 mt-auto z-10 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <p> Copyright © 2026 noviyalpg creative. Semua Hak Cipta Dilindungi.</p>
+                <div class="flex items-center gap-1.5 mt-4 sm:mt-0">
+                    <span>Dibuat dengan</span> <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500 animate-pulse"></i> <span>di Indonesia</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <button id="theme-toggle" class="p-3.5 rounded-full glass shadow-lg hover:scale-110 transition-transform text-slate-700 dark:text-yellow-400 focus:outline-none">
+            <span id="theme-icon-container" class="w-5 h-5 flex items-center justify-center">
+                <i data-lucide="sun" class="w-5 h-5"></i>
+            </span>
+        </button>
+    </div>
+
+    <!-- JavaScript Data, Interaction & SPA Router -->
     <script>
-        // Logika Splash Screen
-        window.addEventListener('load', () => {
-            const splashScreen = document.getElementById('splashScreen');
+        // 1. Fungsi showToast diletakkan di paling atas untuk global availability
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+            const id = 'toast-' + Math.random().toString(36).substring(2, 9);
             
-            // Tunggu animasi loading bar selesai (sekitar 2.5 detik)
+            let bgClass = "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100";
+            let icon = "info";
+            
+            if (type === 'success') {
+                bgClass = "bg-emerald-50 dark:bg-emerald-950 border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-300";
+                icon = "check-circle";
+            } else if (type === 'error') {
+                bgClass = "bg-rose-50 dark:bg-rose-950 border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300";
+                icon = "alert-triangle";
+            }
+            
+            const toastHtml = `
+                <div id="${id}" class="flex items-center gap-3 p-4 rounded-xl border shadow-lg glass pointer-events-auto transition-all duration-300 transform translate-y-4 opacity-0 max-w-sm ${bgClass}">
+                    <i data-lucide="${icon}" class="w-5 h-5 shrink-0"></i>
+                    <p class="text-sm font-medium leading-normal">${message}</p>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', toastHtml);
+            lucide.createIcons();
+            
+            const el = document.getElementById(id);
             setTimeout(() => {
-                splashScreen.classList.add('hidden');
+                if(el) el.classList.remove('translate-y-4', 'opacity-0');
+            }, 50);
+            
+            setTimeout(() => {
+                if(el) {
+                    el.classList.add('translate-y-4', 'opacity-0');
+                    setTimeout(() => el.remove(), 300);
+                }
+            }, 4500);
+        }
+
+        // 2. Data Utama Portofolio (In-Memory Fallback)
+        const defaultData = {
+            heroName: "noviyalpg,",
+            heroTitle: " S.Pd., M.T.",
+            heroSubtitle: "AI Educator, Guru Inovatif & Professional Trainer",
+            heroDesc: "\"Mentransformasi Pendidikan melalui Integrasi Kecerdasan Buatan dan Media Pembelajaran Digital Inovatif.\"",
+            heroImg: "https://ui-avatars.com/api/?name=noviyalpg&background=0D8ABC&color=fff&size=200",
+            aboutDesc: "Seorang praktisi teknologi pendidikan, fasilitator nasional, dan pengembang kurikulum digital dengan pengalaman lebih dari 8 tahun dalam melatih ribuan guru, akademisi, dan profesional di seluruh Indonesia untuk siap menghadapi era kecerdasan buatan (AI) dan gamifikasi pembelajaran.",
+            aboutImg: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=600&q=80",
+            statPelatihan: "180+",
+            statPeserta: "12,500+",
+            statSertifikasi: "35+",
+            statLembaga: "50+",
+            prestasi: [
+                { year: "2024", title: "Guru Inovatif Nasional", giver: "Kementerian Pendidikan dan Kebudayaan RI" },
+                { year: "2023", title: "Trainer AI Terbaik Se-Sumatera", giver: "Asosiasi Teknologi Pendidikan Indonesia" }
+            ],
+            pengalaman: [
+                { period: "2021 - Sekarang", role: "Fasilitator Nasional Pendidikan AI", institution: "Kementerian Pendidikan", desc: "Merancang dan memberikan pelatihan integrasi kecerdasan buatan dalam kurikulum merdeka kepada ribuan pendidik." },
+                { period: "2019 - 2021", role: "Magister Teknologi Pendidikan (M.T.)", institution: "Universitas Terkemuka", desc: "Penelitian pada gamifikasi dan adaptasi media digital interaktif." }
+            ],
+            sertifikasi: [
+                { title: "Google Certified Educator Level 2", issuer: "Google for Education", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" },
+                { title: "Microsoft Innovative Educator", issuer: "Microsoft Education", img: "https://images.unsplash.com/photo-1588196749597-9ff04654f7a8?auto=format&fit=crop&w=600&q=80" },
+                { title: "Certified AI Practitioner", issuer: "EdTech Global", img: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=600&q=80" }
+            ],
+            gallery: [
+                { title: "Workshop AI untuk Guru SMA", loc: "Jakarta, 2024", img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80" },
+                { title: "Seminar Nasional EdTech", loc: "Bandung, 2023", img: "https://images.unsplash.com/photo-1475721025505-1172eb98b958?auto=format&fit=crop&w=600&q=80" },
+                { title: "Bimtek Kurikulum Merdeka", loc: "Surabaya, 2023", img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" }
+            ],
+            sosmed: [
+                { platform: "youtube", label: "YouTube", desc: "Video Edukasi", url: "#" },
+                { platform: "instagram", label: "Instagram", desc: "Tips & Update", url: "#" },
+                { platform: "tiktok", label: "TikTok", desc: "Micro-Learning", url: "#" },
+                { platform: "facebook", label: "Facebook", desc: "Komunitas Edukasi", url: "#" },
+                { platform: "globe", label: "Blog", desc: "Artikel & Materi", url: "#" },
+                { platform: "message-circle", label: "WhatsApp", desc: "Info & Diskusi", url: "#" }
+            ]
+        };
+
+        // Inisialisasi Data Portofolio Aktif
+        let portfolioData = JSON.parse(JSON.stringify(defaultData));
+
+        // URL Google Apps Script yang Dikunci Secara Permanen
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbwxzu4PXETHnJvBQNJWareW4jcz8F2wZ6O_l2FnbI61N0YXUDkfyxH9YG4Hji52tVA/exec";
+
+        let editExpIdx = -1;
+        let editCertIdx = -1;
+        let editGalIdx = -1;
+        let editSocIdx = -1;
+
+        // SVG Logo Resmi Sosmed Berwarna dan High-Fidelity
+        function getSosmedLogoSVG(platform) {
+            switch(platform.toLowerCase()) {
+                case 'youtube':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837z" fill="#FF0000"/><path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/></svg>`;
+                case 'instagram':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FED731" /><stop offset="25%" stop-color="#F57620" /><stop offset="50%" stop-color="#E1306C" /><stop offset="75%" stop-color="#C13584" /><stop offset="100%" stop-color="#405DE6" /></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig-grad)"/><rect x="5" y="5" width="14" height="14" rx="4" stroke="white" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="2" fill="none"/><circle cx="16.5" cy="7.5" r="1.2" fill="white"/></svg>`;
+                case 'tiktok':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#010101"/><path d="M11.53 18.52c-2.31 0-4.18-1.87-4.18-4.18s1.87-4.18 4.18-4.18c.24 0 .47.02.7.06v-3.13a7.35 7.35 0 0 0-4.88 1.83 7.33 7.33 0 0 0-2.45 5.42c0 4.07 3.55 7.37 7.63 7.37s7.37-3.3 7.37-7.37v-6.93a5.55 5.55 0 0 0 3.09 1.48V4.28c-.89-.01-1.74-.3-2.45-.85A5.19 5.19 0 0 1 14.65.62h-3.12v12.07c0 1.25-1.02 2.27-2.27 2.27s-2.27-1.02-2.27-2.27 1.02-2.27 2.27-2.27c.24 0 .47.04.7.11v-3.13c-.23-.04-.46-.06-.7-.06a5.41 5.41 0 0 0-5.41 5.41 5.41 5.41 0 0 0 5.41 5.41c2.1 0 3.91-1.2 4.79-2.95v1.27c0 2.27-1.02 4.18-3.13 4.18z" fill="#00f2fe"/><path d="M12.525.02c1.31-.02 2.61-.01 3.91.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#fe0979"/><path d="M12.01 0c1.31 0 2.62.01 3.93.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#ffffff"/></svg>`;
+                case 'facebook':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/></svg>`;
+                case 'globe':
+                case 'blog':
+                case 'website':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#10B981"/><circle cx="12" cy="12" r="8" stroke="white" stroke-width="1.8" fill="none"/><path d="M4 12h16M12 4a15.3 15.3 0 0 1 4 8 15.3 15.3 0 0 1-4 8 15.3 15.3 0 0 1-4-8 15.3 15.3 0 0 1 4-8z" stroke="white" stroke-width="1.2" fill="none"/></svg>`;
+                case 'message-circle':
+                case 'whatsapp':
+                case 'wa':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12.012 4.5c-4.14 0-7.51 3.37-7.51 7.51 0 1.32.46 2.61 1.31 3.69L5 20.01l4.22-1.11a7.44 7.44 0 0 0 3.79.99h.004c4.14 0 7.511-3.37 7.511-7.51 0-2.01-.782-3.89-2.203-5.31A7.445 7.445 0 0 0 12.012 4.5z" fill="#25D366"/><path d="M12.012 5.5c1.74 0 3.38.68 4.6 1.9s1.9 2.86 1.9 4.6c0 3.58-2.92 6.5-6.5 6.5-.95 0-1.89-.25-2.71-.72l-.24-.14-2.5.65.67-2.43-.16-.25a6.45 7.45 0 0 1-.97-3.61c0-3.58 2.91-6.5 6.5-6.5zm3.17 4.14c-.16-.08-.92-.46-1.07-.51-.15-.05-.25-.08-.36.08-.11.16-.42.51-.52.62-.1.11-.19.12-.35.04-.16-.08-.68-.25-1.29-.79-.48-.42-.8-1-1-.16-.24-.1-.01-.37.1-.11.1-.09.16-.16.24.05.08.11.1.16.16.05.11.03.1.25-.02.2-.08.1-.15.42-.42.51-.05.11-.1.16-.15.22-.05.05-.1.15.02.25.1.11.88 1.44 2.11 2.5.4.38.74.5 1 .59.43.14.82.12 1.13.06.34-.06.92-.38 1.05-.75.13-.37.13-.69.09-.75-.04-.06-.15-.1-.31-.18z" fill="white"/></svg>`;
+                case 'linkedin':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#0A66C2"/></svg>`;
+                case 'twitter':
+                case 'x':
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#000000"/><path d="M18.244 2.25h3.308l-7.227 7.69 8.502 11.81H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.235L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="#FFFFFF"/></svg>`;
+                default:
+                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#3B82F6"/><path d="M12 4v16m-8-8h16" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>`;
+            }
+        }
+
+        // Styling Card Sosmed
+        function getSosmedStyle(platform) {
+            const styles = {
+                'youtube': { hoverBorder: 'hover:border-red-500/50', hoverText: 'group-hover:text-red-500' },
+                'instagram': { hoverBorder: 'hover:border-pink-500/50', hoverText: 'group-hover:text-pink-500' },
+                'facebook': { hoverBorder: 'hover:border-blue-500/50', hoverText: 'group-hover:text-blue-500' },
+                'linkedin': { hoverBorder: 'hover:border-blue-600/50', hoverText: 'group-hover:text-blue-700' },
+                'twitter': { hoverBorder: 'hover:border-slate-500/50', hoverText: 'group-hover:text-slate-400' },
+                'tiktok': { hoverBorder: 'hover:border-slate-500/50', hoverText: 'group-hover:text-slate-400' },
+                'globe': { hoverBorder: 'hover:border-emerald-500/50', hoverText: 'group-hover:text-emerald-500' },
+                'message-circle': { hoverBorder: 'hover:border-green-500/50', hoverText: 'group-hover:text-green-500' }
+            };
+            return styles[platform] || styles['globe'];
+        }
+
+        function renderData() {
+            // Profil & Tentang
+            document.getElementById('hero-name-display').innerText = portfolioData.heroName;
+            document.getElementById('hero-title-display').innerText = portfolioData.heroTitle;
+            document.getElementById('hero-subtitle-display').innerText = portfolioData.heroSubtitle;
+            document.getElementById('hero-desc-display').innerText = portfolioData.heroDesc;
+            document.getElementById('hero-img-display').src = portfolioData.heroImg;
+            document.getElementById('about-desc-display').innerText = portfolioData.aboutDesc;
+            document.getElementById('about-img-display').src = portfolioData.aboutImg;
+
+            // Render Statistik Utama (SINKRONISASI CLOUD DINAMIS)
+            document.getElementById('stat-pelatihan-display').innerText = portfolioData.statPelatihan || "0";
+            document.getElementById('stat-peserta-display').innerText = portfolioData.statPeserta || "0";
+            document.getElementById('stat-sertifikasi-display').innerText = portfolioData.statSertifikasi || "0";
+            document.getElementById('stat-lembaga-display').innerText = portfolioData.statLembaga || "0";
+
+            // Render Prestasi (BARU & DINAMIS)
+            const prestasiContainer = document.getElementById('prestasi-container');
+            if (portfolioData.prestasi && portfolioData.prestasi.length > 0) {
+                prestasiContainer.innerHTML = portfolioData.prestasi.map((item) => `
+                    <div class="bg-white/60 dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex gap-4 items-start hover:shadow-md transition-shadow">
+                        <div class="p-2.5 bg-yellow-50 dark:bg-yellow-950/40 rounded-xl text-yellow-600 dark:text-yellow-400 shrink-0 mt-0.5">
+                            <i data-lucide="award" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/40 px-2 py-0.5 rounded-full">${item.year}</span>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base mt-1.5 leading-tight">${item.title}</h3>
+                            <p class="text-xs text-slate-500 mt-1">${item.giver}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                prestasiContainer.innerHTML = '<p class="col-span-2 text-sm text-slate-500 italic text-center py-4">Belum ada prestasi yang ditambahkan.</p>';
+            }
+
+            // Render Pengalaman
+            const expContainer = document.getElementById('pengalaman-container');
+            expContainer.innerHTML = portfolioData.pengalaman.map((item, i) => {
+                const color = i % 2 === 0 ? 'blue' : 'violet';
+                return `
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:hidden absolute w-4 h-4 bg-${color}-500 rounded-full -left-[9px] top-1 border-4 border-white dark:border-slate-900"></div>
+                    <div class="md:grid md:grid-cols-5 gap-8 items-start">
+                        <div class="hidden md:block col-span-1 text-right pt-1 relative">
+                            <span class="text-sm font-bold text-${color}-600 dark:text-${color}-400">${item.period}</span>
+                            <div class="absolute w-4 h-4 bg-${color}-500 rounded-full -right-[26px] top-1.5 border-4 border-white dark:border-slate-900 z-10"></div>
+                        </div>
+                        <div class="md:hidden mb-2">
+                            <span class="text-xs font-bold text-${color}-600 dark:text-${color}-400 bg-${color}-50 dark:bg-${color}-900/30 px-3 py-1 rounded-full">${item.period}</span>
+                        </div>
+                        <div class="col-span-4 bg-white/60 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                            <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">${item.role}</h3>
+                            <p class="text-sm text-slate-500 mb-3 flex items-center gap-2"><i data-lucide="building" class="w-4 h-4"></i> ${item.institution}</p>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">${item.desc}</p>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+
+            // Render Sertifikasi
+            const certContainer = document.getElementById('sertifikasi-container');
+            certContainer.innerHTML = portfolioData.sertifikasi.map((item) => `
+                <div class="bg-white/70 dark:bg-slate-800/70 rounded-2xl hover:-translate-y-2 transition-transform duration-300 border border-transparent hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden flex flex-col shadow-md">
+                    <div class="relative w-full h-44 overflow-hidden group">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col relative">
+                        <div class="absolute -top-10 right-4 w-14 h-14 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg border-4 border-slate-50 dark:border-slate-900">
+                            <i data-lucide="award" class="text-slate-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 mt-2 leading-tight">${item.title}</h3>
+                        <p class="text-sm text-slate-500">${item.issuer}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Galeri
+            const galContainer = document.getElementById('pelatihan-gallery-container');
+            galContainer.innerHTML = portfolioData.gallery.map((item) => `
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all aspect-[4/3] bg-slate-200 dark:bg-slate-800">
+                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="text-white font-medium text-sm md:text-base block">${item.title}</span>
+                            <span class="text-blue-300 text-xs flex items-center gap-1 mt-1"><i data-lucide="map-pin" class="w-3 h-3"></i> ${item.loc}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Sosmed
+            const sosmedContainer = document.getElementById('sosmed-container');
+            sosmedContainer.innerHTML = portfolioData.sosmed.map((item) => {
+                const s = getSosmedStyle(item.platform);
+                const iconHTML = getSosmedLogoSVG(item.platform);
+                return `
+                <a href="${item.url}" target="_blank" class="group flex items-center gap-4 p-5 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-transparent ${s.hoverBorder} hover:shadow-md transition-all">
+                    <div class="group-hover:scale-110 transition-transform duration-300 shrink-0">
+                        ${iconHTML}
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white ${s.hoverText} transition-colors">${item.label}</h3>
+                        <p class="text-sm text-slate-500">${item.desc}</p>
+                    </div>
+                </a>
+            `}).join('');
+
+            // Render Ulang List di Panel Admin
+            renderAdminLists();
+            lucide.createIcons();
+        }
+
+        // 3. Logika Form & List Admin
+        function renderAdminLists() {
+            // List Prestasi (BARU)
+            document.getElementById('admin-prestasi-list').innerHTML = portfolioData.prestasi.map((item, idx) => `
+                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+                    <div class="truncate mr-2 flex-1">
+                        <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
+                        <p class="text-xs text-slate-500 truncate">${item.year} - ${item.giver}</p>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button type="button" onclick="startEditPrestasi(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deletePrestasi(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            // List Pengalaman (Dengan Fitur Edit)
+            document.getElementById('admin-pengalaman-list').innerHTML = portfolioData.pengalaman.map((item, idx) => `
+                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+                    <div class="truncate mr-2 flex-1">
+                        <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.role}</p>
+                        <p class="text-xs text-slate-500 truncate">${item.period} - ${item.institution}</p>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button type="button" onclick="startEditPengalaman(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deletePengalaman(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            // List Sertifikasi (Dengan Fitur Edit)
+            document.getElementById('admin-sertifikasi-list').innerHTML = portfolioData.sertifikasi.map((item, idx) => `
+                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+                    <div class="flex items-center gap-3 overflow-hidden flex-1 mr-2">
+                        <img src="${item.img}" class="w-10 h-10 object-cover rounded shrink-0 border dark:border-slate-700">
+                        <div class="truncate">
+                            <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
+                            <p class="text-xs text-slate-500 truncate">${item.issuer}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button type="button" onclick="startEditSertifikasi(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deleteSertifikasi(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            // List Galeri (Dengan Fitur Edit)
+            document.getElementById('admin-gallery-list').innerHTML = portfolioData.gallery.map((item, idx) => `
+                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+                    <div class="flex items-center gap-3 overflow-hidden flex-1 mr-2">
+                        <img src="${item.img}" class="w-10 h-10 object-cover rounded shrink-0 border dark:border-slate-700">
+                        <div class="truncate">
+                            <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
+                            <p class="text-xs text-slate-500 truncate">${item.loc}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button type="button" onclick="startEditGalleryItem(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deleteGalleryItem(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            // List Sosmed (Dengan Fitur Edit)
+            document.getElementById('admin-sosmed-list').innerHTML = portfolioData.sosmed.map((item, idx) => `
+                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+                    <div class="truncate flex items-center gap-2 flex-1 mr-2">
+                        <i data-lucide="${item.platform === 'tiktok' ? 'smartphone' : item.platform}" class="w-4 h-4 text-slate-500 shrink-0"></i>
+                        <div class="truncate">
+                            <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.label}</p>
+                            <p class="text-xs text-slate-500 truncate">${item.url}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button type="button" onclick="startEditSosmed(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deleteSosmed(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populateAdminForm() {
+            document.getElementById('admin-hero-name').value = portfolioData.heroName;
+            document.getElementById('admin-hero-title').value = portfolioData.heroTitle;
+            document.getElementById('admin-hero-subtitle').value = portfolioData.heroSubtitle;
+            document.getElementById('admin-hero-desc').value = portfolioData.heroDesc;
+            document.getElementById('admin-hero-img').value = portfolioData.heroImg;
+            document.getElementById('admin-about-desc').value = portfolioData.aboutDesc;
+            document.getElementById('admin-about-img').value = portfolioData.aboutImg;
+
+            // Populate Form Statistik Utama
+            document.getElementById('admin-stat-pelatihan').value = portfolioData.statPelatihan || "180+";
+            document.getElementById('admin-stat-peserta').value = portfolioData.statPeserta || "12,500+";
+            document.getElementById('admin-stat-sertifikasi').value = portfolioData.statSertifikasi || "35+";
+            document.getElementById('admin-stat-lembaga').value = portfolioData.statLembaga || "50+";
+        }
+
+        // ==========================================
+        //  Fungsi Sinkronisasi Cloud Otomatis (Google Sheets)
+        // ==========================================
+        
+        async function autoLoadCloud() {
+            try {
+                // Menggunakan fetch dengan redirect manual agar terhindar dari isu pemblokiran browser (HTTP 302)
+                const response = await fetch(GAS_URL, {
+                    method: 'GET',
+                    redirect: 'follow', 
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
                 
-                // Tambahkan class ke body untuk memicu animasi masuk konten utama
-                document.body.classList.add('app-loaded');
-            }, 2600);
+                const resData = await response.json();
+                
+                if (resData && resData.status === "success" && resData.data) {
+                    const cloudDb = resData.data;
+                    
+                    // Cek kekosongan data. Jika tidak ada property 'heroName', berarti butuh inisialisasi awal.
+                    if (Object.keys(cloudDb).length === 0 || !cloudDb.heroName) {
+                         showToast("Spreadsheet kosong. Menginisialisasi tabel secara otomatis...", "info");
+                         await fetch(GAS_URL + "?action=setup", { method: 'GET', redirect: 'follow' });
+                         setTimeout(autoLoadCloud, 2000); 
+                         return;
+                    }
+                    
+                    // Ekstraksi data pengaturan umum (Data Profil dan Tentang, serta Statistik)
+                    const flatKeys = [
+                        'heroName', 'heroTitle', 'heroSubtitle', 'heroDesc', 'heroImg', 
+                        'aboutDesc', 'aboutImg', 'statPelatihan', 'statPeserta', 
+                        'statSertifikasi', 'statLembaga'
+                    ];
+                    flatKeys.forEach(key => {
+                        if (cloudDb[key] !== undefined) {
+                            portfolioData[key] = cloudDb[key];
+                        }
+                    });
+                    
+                    // Ekstraksi data berbentuk List (Tabel)
+                    if (cloudDb.prestasi && cloudDb.prestasi.length > 0) portfolioData.prestasi = cloudDb.prestasi;
+                    if (cloudDb.pengalaman && cloudDb.pengalaman.length > 0) portfolioData.pengalaman = cloudDb.pengalaman;
+                    if (cloudDb.sertifikasi && cloudDb.sertifikasi.length > 0) portfolioData.sertifikasi = cloudDb.sertifikasi;
+                    if (cloudDb.gallery && cloudDb.gallery.length > 0) portfolioData.gallery = cloudDb.gallery;
+                    if (cloudDb.sosmed && cloudDb.sosmed.length > 0) portfolioData.sosmed = cloudDb.sosmed;
+
+                    renderData();
+                    populateAdminForm();
+                    showToast("Sistem Berhasil Terhubung! Data disinkronisasi dari Google Sheets.", "success");
+                } else {
+                    throw new Error("Struktur respons Google Apps Script tidak valid.");
+                }
+            } catch(err) {
+                console.error("Gagal memuat database otomatis:", err);
+                showToast("Mode Offline (Menggunakan Data Bawaan / Memori Browser)", "error");
+                
+                renderData();
+                populateAdminForm();
+            }
+        }
+
+        async function autoSaveToCloud() {
+            showToast("Menyimpan perubahan ke Google Sheets...", "info");
+            try {
+                await fetch(GAS_URL, {
+                    method: 'POST',
+                    redirect: 'follow',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        action: 'saveAll',
+                        data: portfolioData
+                    })
+                });
+                showToast("Database Google Sheets Berhasil Diperbarui secara Real-time!", "success");
+            } catch (err) {
+                console.error("Sinkronisasi gagal:", err);
+                showToast("Gagal menyimpan ke Google Sheets secara otomatis. Periksa koneksi internet Anda.", "error");
+            }
+        }
+
+        // Simpan Form Utama Profil & Tentang
+        document.getElementById('admin-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const heroImgUrl = document.getElementById('admin-hero-img').value;
+            const aboutImgUrl = document.getElementById('admin-about-img').value;
+            
+            if (heroImgUrl && !heroImgUrl.includes('imgur.com') && !heroImgUrl.includes('ui-avatars.com')) {
+                showToast('Wajib menggunakan URL dari imgur.com untuk foto profil!', 'error');
+                return;
+            }
+            if (aboutImgUrl && !aboutImgUrl.includes('imgur.com') && !aboutImgUrl.includes('unsplash.com') && !aboutImgUrl.includes('images.unsplash.com')) {
+                showToast('Wajib menggunakan URL dari imgur.com untuk foto tentang!', 'error');
+                return;
+            }
+            
+            portfolioData.heroName = document.getElementById('admin-hero-name').value;
+            portfolioData.heroTitle = document.getElementById('admin-hero-title').value;
+            portfolioData.heroSubtitle = document.getElementById('admin-hero-subtitle').value;
+            portfolioData.heroDesc = document.getElementById('admin-hero-desc').value;
+            portfolioData.heroImg = heroImgUrl;
+            portfolioData.aboutDesc = document.getElementById('admin-about-desc').value;
+            portfolioData.aboutImg = aboutImgUrl;
+
+            // Simpan Perubahan Nilai Statistik
+            portfolioData.statPelatihan = document.getElementById('admin-stat-pelatihan').value;
+            portfolioData.statPeserta = document.getElementById('admin-stat-peserta').value;
+            portfolioData.statSertifikasi = document.getElementById('admin-stat-sertifikasi').value;
+            portfolioData.statLembaga = document.getElementById('admin-stat-lembaga').value;
+
+            renderData();
+            autoSaveToCloud(); // Otomatis simpan ke Cloud
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const startBtn = document.getElementById('startBtn');
-            const heroContainer = document.getElementById('heroContainer');
+        // ==========================================
+        //  Fungsi-Fungsi Modul (Prestasi) - BARU
+        // ==========================================
+        function startEditPrestasi(idx) {
+            editCertIdx = idx;
+            const item = portfolioData.prestasi[idx];
+            document.getElementById('new-pres-year').value = item.year;
+            document.getElementById('new-pres-title').value = item.title;
+            document.getElementById('new-pres-giver').value = item.giver;
 
-            startBtn.addEventListener('click', () => {
-                // 1. Tambahkan efek ripple manual (opsional) atau ubah teks
-                startBtn.textContent = 'MEMUAT...';
-                // Gunakan warna amber (245, 158, 11) untuk glow aktif
-                startBtn.style.boxShadow = '0 0 50px rgba(245, 158, 11, 1)';
+            document.getElementById('btn-pres-action').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Simpan Edit';
+            document.getElementById('btn-pres-cancel').classList.remove('hidden');
+            lucide.createIcons();
+        }
 
-                // 2. Transisi keluar (zoom in & fade out)
-                setTimeout(() => {
-                    heroContainer.classList.add('launching');
-                }, 200); // Jeda sebentar agar efek klik terasa
+        function cancelEditPrestasi() {
+            editCertIdx = -1;
+            ['year', 'title', 'giver'].forEach(id => document.getElementById(`new-pres-${id}`).value = '');
+            document.getElementById('btn-pres-action').innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron';
+            document.getElementById('btn-pres-cancel').classList.add('hidden');
+            lucide.createIcons();
+        }
 
-                // 3. Arahkan ke URL tujuan setelah animasi selesai
-                setTimeout(() => {
-                    window.location.href = "https://noviyalpg1.github.io/studiolpgv3/#";
-                }, 1200); // Disesuaikan dengan durasi transisi CSS (0.8s)
+        function savePrestasi() {
+            const year = document.getElementById('new-pres-year').value.trim();
+            const title = document.getElementById('new-pres-title').value.trim();
+            const giver = document.getElementById('new-pres-giver').value.trim();
+            
+            if (!year || !title || !giver) {
+                showToast('Harap isi semua form prestasi!', 'error');
+                return;
+            }
+            
+            if (editCertIdx === -1) {
+                if(!portfolioData.prestasi) portfolioData.prestasi = [];
+                portfolioData.prestasi.push({ year, title, giver });
+            } else {
+                portfolioData.prestasi[editCertIdx] = { year, title, giver };
+                cancelEditPrestasi();
+            }
+            
+            ['year', 'title', 'giver'].forEach(id => document.getElementById(`new-pres-${id}`).value = '');
+            renderData();
+            autoSaveToCloud();
+        }
+
+        function deletePrestasi(idx) {
+            if (confirm('Hapus pencapaian prestasi ini?')) {
+                if (editCertIdx === idx) cancelEditPrestasi();
+                portfolioData.prestasi.splice(idx, 1);
+                renderData();
+                autoSaveToCloud();
+            }
+        }
+
+        // ==========================================
+        //  Fungsi-Fungsi Modul (Pengalaman)
+        // ==========================================
+        function startEditPengalaman(idx) {
+            editExpIdx = idx;
+            const item = portfolioData.pengalaman[idx];
+            document.getElementById('new-exp-period').value = item.period;
+            document.getElementById('new-exp-role').value = item.role;
+            document.getElementById('new-exp-inst').value = item.institution;
+            document.getElementById('new-exp-desc').value = item.desc;
+
+            document.getElementById('btn-exp-action').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Simpan Edit';
+            document.getElementById('btn-exp-cancel').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function cancelEditPengalaman() {
+            editExpIdx = -1;
+            ['period', 'role', 'inst', 'desc'].forEach(id => document.getElementById(`new-exp-${id}`).value = '');
+            document.getElementById('btn-exp-action').innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron';
+            document.getElementById('btn-exp-cancel').classList.add('hidden');
+            lucide.createIcons();
+        }
+
+        function savePengalaman() {
+            const period = document.getElementById('new-exp-period').value;
+            const role = document.getElementById('new-exp-role').value;
+            const institution = document.getElementById('new-exp-inst').value;
+            const desc = document.getElementById('new-exp-desc').value;
+            if (!period || !role || !institution) {
+                showToast('Harap isi semua form pengalaman!', 'error');
+                return;
+            }
+            
+            if (editExpIdx === -1) {
+                portfolioData.pengalaman.push({ period, role, institution, desc });
+            } else {
+                portfolioData.pengalaman[editExpIdx] = { period, role, institution, desc };
+                cancelEditPengalaman();
+            }
+            ['period', 'role', 'inst', 'desc'].forEach(id => document.getElementById(`new-exp-${id}`).value = '');
+            renderData();
+            autoSaveToCloud();
+        }
+
+        function deletePengalaman(idx) { 
+            if (confirm('Hapus pengalaman?')) { 
+                if (editExpIdx === idx) cancelEditPengalaman();
+                portfolioData.pengalaman.splice(idx, 1); 
+                renderData(); 
+                autoSaveToCloud();
+            } 
+        }
+
+        // ==========================================
+        //  Fungsi-Fungsi Modul (Sertifikasi)
+        // ==========================================
+        function startEditSertifikasi(idx) {
+            editCertIdx = idx;
+            const item = portfolioData.sertifikasi[idx];
+            document.getElementById('new-cert-title').value = item.title;
+            document.getElementById('new-cert-issuer').value = item.issuer;
+            document.getElementById('new-cert-img').value = item.img;
+
+            document.getElementById('btn-cert-action').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Simpan Edit';
+            document.getElementById('btn-cert-cancel').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function cancelEditSertifikasi() {
+            editCertIdx = -1;
+            ['title', 'issuer', 'img'].forEach(id => document.getElementById(`new-cert-${id}`).value = '');
+            document.getElementById('btn-cert-action').innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron';
+            document.getElementById('btn-cert-cancel').classList.add('hidden');
+            lucide.createIcons();
+        }
+
+        function saveSertifikasi() {
+            const title = document.getElementById('new-cert-title').value;
+            const issuer = document.getElementById('new-cert-issuer').value;
+            const img = document.getElementById('new-cert-img').value;
+            if (!title || !issuer || !img) {
+                showToast('Harap isi semua form sertifikasi!', 'error');
+                return;
+            }
+            if (!img.includes('imgur.com') && !img.includes('images.unsplash.com')) {
+                showToast('Ditolak: Sistem HANYA menerima link gambar dari imgur.com', 'error');
+                return;
+            }
+            
+            if (editCertIdx === -1) {
+                portfolioData.sertifikasi.push({ title, issuer, img });
+            } else {
+                portfolioData.sertifikasi[editCertIdx] = { title, issuer, img };
+                cancelEditSertifikasi();
+            }
+            ['title', 'issuer', 'img'].forEach(id => document.getElementById(`new-cert-${id}`).value = '');
+            renderData();
+            autoSaveToCloud();
+        }
+
+        function deleteSertifikasi(idx) { 
+            if (confirm('Hapus sertifikasi?')) { 
+                if (editCertIdx === idx) cancelEditSertifikasi();
+                portfolioData.sertifikasi.splice(idx, 1); 
+                renderData(); 
+                autoSaveToCloud();
+            } 
+        }
+
+        // ==========================================
+        //  Fungsi-Fungsi Modul (Galeri)
+        // ==========================================
+        function startEditGalleryItem(idx) {
+            editGalIdx = idx;
+            const item = portfolioData.gallery[idx];
+            document.getElementById('new-gal-title').value = item.title;
+            document.getElementById('new-gal-loc').value = item.loc;
+            document.getElementById('new-gal-img').value = item.img;
+
+            document.getElementById('btn-gal-action').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Simpan Edit';
+            document.getElementById('btn-gal-cancel').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function cancelEditGalleryItem() {
+            editGalIdx = -1;
+            ['title', 'loc', 'img'].forEach(id => document.getElementById(`new-gal-${id}`).value = '');
+            document.getElementById('btn-gal-action').innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i> Tambah Foto Galeri';
+            document.getElementById('btn-gal-cancel').classList.add('hidden');
+            lucide.createIcons();
+        }
+
+        function saveGalleryItem() {
+            const title = document.getElementById('new-gal-title').value;
+            const loc = document.getElementById('new-gal-loc').value;
+            const img = document.getElementById('new-gal-img').value;
+            if (!title || !loc || !img) {
+                showToast('Harap lengkapi semua isian Galeri!', 'error');
+                return;
+            }
+            if (!img.includes('imgur.com') && !img.includes('images.unsplash.com')) {
+                showToast('Ditolak: Sistem HANYA menerima link gambar dari imgur.com', 'error');
+                return;
+            }
+
+            if (editGalIdx === -1) {
+                portfolioData.gallery.push({ title, loc, img });
+            } else {
+                portfolioData.gallery[editGalIdx] = { title, loc, img };
+                cancelEditGalleryItem();
+            }
+            ['title', 'loc', 'img'].forEach(id => document.getElementById(`new-gal-${id}`).value = '');
+            renderData();
+            autoSaveToCloud();
+        }
+
+        function deleteGalleryItem(idx) { 
+            if (confirm('Hapus foto dari galeri?')) { 
+                if (editGalIdx === idx) cancelEditGalleryItem();
+                portfolioData.gallery.splice(idx, 1); 
+                renderData(); 
+                autoSaveToCloud();
+            } 
+        }
+
+        // ==========================================
+        //  Fungsi-Fungsi Modul (Sosmed)
+        // ==========================================
+        function startEditSosmed(idx) {
+            editSocIdx = idx;
+            const item = portfolioData.sosmed[idx];
+            document.getElementById('new-soc-platform').value = item.platform;
+            document.getElementById('new-soc-desc').value = item.desc;
+            document.getElementById('new-soc-url').value = item.url;
+
+            document.getElementById('btn-soc-action').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Simpan Edit';
+            document.getElementById('btn-soc-cancel').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function cancelEditSosmed() {
+            editSocIdx = -1;
+            document.getElementById('new-soc-desc').value = '';
+            document.getElementById('new-soc-url').value = '';
+            document.getElementById('btn-soc-action').innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i> Tambah Sosmed';
+            document.getElementById('btn-soc-cancel').classList.add('hidden');
+            lucide.createIcons();
+        }
+
+        // ==========================================
+        //  Fungsi Simpan Sosmed
+        // ==========================================
+        function saveSosmed() {
+            const platform = document.getElementById('new-soc-platform').value;
+            const label = document.getElementById('new-soc-platform').options[document.getElementById('new-soc-platform').selectedIndex].text;
+            const desc = document.getElementById('new-soc-desc').value;
+            const url = document.getElementById('new-soc-url').value;
+            if (!desc || !url) {
+                showToast('Harap lengkapi deskripsi dan URL Sosmed!', 'error');
+                return;
+            }
+
+            if (editSocIdx === -1) {
+                portfolioData.sosmed.push({ platform, label, desc, url });
+            } else {
+                portfolioData.sosmed[editSocIdx] = { platform, label, desc, url };
+                cancelEditSosmed();
+            }
+            ['desc', 'url'].forEach(id => document.getElementById(`new-soc-${id}`).value = '');
+            renderData();
+            autoSaveToCloud();
+        }
+
+        function deleteSosmed(idx) { 
+            if (confirm('Hapus sosmed?')) { 
+                if (editSocIdx === idx) cancelEditSosmed();
+                portfolioData.sosmed.splice(idx, 1); 
+                renderData(); 
+                autoSaveToCloud();
+            } 
+        }
+
+        // ==========================================
+        //  Fungsi-Fungsi Kirim Email via GAS
+        // ==========================================
+        async function handleSendEmail(event) {
+            event.preventDefault();
+            const name = document.getElementById('form-name').value.trim();
+            const email = document.getElementById('form-email').value.trim();
+            const inst = document.getElementById('form-institution').value.trim() || 'Tidak ada instansi';
+            const msg = document.getElementById('form-message').value.trim();
+
+            const btnText = document.getElementById('btn-submit-text');
+            const btnIconContainer = document.getElementById('btn-submit-icon-container');
+
+            btnText.innerText = "Mengirim Pesan...";
+            if (btnIconContainer) {
+                btnIconContainer.innerHTML = '<i data-lucide="refresh-cw" class="w-4 h-4 animate-spin"></i>';
+            }
+            lucide.createIcons();
+
+            try {
+                await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'sendEmail',
+                        emailData: { name, email, institution: inst, message: msg }
+                    })
+                });
+
+                showToast("Sukses! Undangan kolaborasi Anda telah dikirimkan ke email narasumber.", "success");
+                document.getElementById('collaboration-form').reset();
+            } catch (err) {
+                console.error(err);
+                showToast("Terjadi kesalahan. Silakan hubungi langsung ke noviyachannel@gmail.com", "error");
+            } finally {
+                btnText.innerText = "Kirim Pesan Sekarang";
+                if (btnIconContainer) {
+                    btnIconContainer.innerHTML = '<i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>';
+                }
+                lucide.createIcons();
+            }
+        }
+
+        // ==========================================
+        //  Logika Chatbot Asisten AI
+        // ==========================================
+        let isChatbotOpen = false;
+
+        function toggleChatbot() {
+            const win = document.getElementById('chatbot-window');
+            const iconContainer = document.getElementById('chatbot-icon-container');
+            isChatbotOpen = !isChatbotOpen;
+            
+            if (isChatbotOpen) {
+                win.classList.remove('hidden');
+                if (iconContainer) {
+                    iconContainer.innerHTML = '<i data-lucide="chevron-down" class="w-6 h-6"></i>';
+                }
+            } else {
+                win.classList.add('hidden');
+                if (iconContainer) {
+                    iconContainer.innerHTML = '<i data-lucide="message-square" class="w-6 h-6"></i>';
+                }
+            }
+            lucide.createIcons();
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') submitUserChat();
+        }
+
+        function sendQuickReply(text) {
+            document.getElementById('chatbot-input').value = text;
+            submitUserChat();
+        }
+
+        function submitUserChat() {
+            const inputEl = document.getElementById('chatbot-input');
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            inputEl.value = '';
+            appendChatMessage(text, 'user');
+
+            setTimeout(() => {
+                const response = getVirtualAssistantResponse(text);
+                appendChatMessage(response, 'bot');
+            }, 600);
+        }
+
+        function appendChatMessage(text, sender) {
+            const msgArea = document.getElementById('chatbot-messages');
+            
+            let messageHtml = '';
+            if (sender === 'user') {
+                messageHtml = `
+                    <div class="flex justify-end max-w-[85%] ml-auto">
+                        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-sm leading-relaxed">
+                            ${text}
+                        </div>
+                    </div>
+                `;
+            } else {
+                messageHtml = `
+                    <div class="flex gap-2 items-start max-w-[85%]">
+                        <div class="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">N</div>
+                        <div class="bg-white dark:bg-slate-900 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/50 dark:border-slate-800/50 text-slate-700 dark:text-slate-300 text-sm leading-relaxed whitespace-pre-line">
+                            ${text}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            msgArea.insertAdjacentHTML('beforeend', messageHtml);
+            msgArea.scrollTop = msgArea.scrollHeight;
+        }
+
+        function getVirtualAssistantResponse(userInput) {
+            const query = userInput.toLowerCase();
+            const data = portfolioData;
+            const cleanName = data.heroName.replace(',', '');
+
+            if (query.includes('halo') || query.includes('hi ') || query.includes('pagi') || query.includes('siang')) {
+                return `Halo! Saya adalah Asisten Virtual dari **${cleanName}**. \n\nAda yang bisa saya bantu terkait profil narasumber, riwayat karir, sertifikasi, atau penawaran kerja sama?`;
+            }
+            if (query.includes('siapa') || query.includes('profil') || query.includes('tentang') || query.includes('biodata') || query.includes('nama')) {
+                return `Beliau adalah **${cleanName}${data.heroTitle}**.\nSeorang **${data.heroSubtitle}**.\n\nFilosofi mengajar beliau: ${data.heroDesc}\n\nIngin tahu pengalaman kerja atau sertifikasinya? Ketik saja "pengalaman" o "sertifikat".`;
+            }
+            if (query.includes('kontak') || query.includes('hubungi') || query.includes('email') || query.includes('wa') || query.includes('whatsapp') || query.includes('domisili')) {
+                return `Anda dapat menghubungi **${cleanName}** melalui jalur resmi berikut:\n\n` +
+                       `📧 **Email Bisnis**: noviyachannel@gmail.com\n` +
+                       `💬 **WhatsApp**: +62 812-3456-789\n` +
+                       `📍 **Kantor**: Campang Jaya, Bandar Lampung, Lampung\n\n` +
+                       `Anda juga dapat melayangkan proposal resmi dengan mengisi formulir di halaman *Hubungi Saya*!`;
+            }
+            if (query.includes('pengalaman') || query.includes('karir') || query.includes('kerja') || query.includes('riwayat')) {
+                const expList = data.pengalaman.map(item => `• **${item.period}**: ${item.role} di *${item.institution}*\n  _${item.desc}_`).join('\n\n');
+                return `Berikut adalah riwayat karir profesional **${cleanName}**:\n\n${expList}`;
+            }
+            if (query.includes('sertifikasi') || query.includes('sertifikat') || query.includes('keahlian')) {
+                const certList = data.sertifikasi.map(item => `• **${item.title}** (Penerbit: ${item.issuer})`).join('\n');
+                return `Beberapa sertifikasi profesional yang dimiliki **${cleanName}**:\n\n${certList}`;
+            }
+            if (query.includes('pelatihan') || query.includes('galeri') || query.includes('foto')) {
+                const galList = data.gallery.map(item => `• **${item.title}** di *${item.loc}*`).join('\n');
+                return `Berikut adalah beberapa dokumentasi kegiatan pelatihan luring terbaru:\n\n${galList}`;
+            }
+            if (query.includes('sosmed') || query.includes('youtube') || query.includes('instagram') || query.includes('tiktok')) {
+                const socList = data.sosmed.map(item => `• **${item.label}**: (${item.desc})`).join('\n');
+                return `Mari berjejaring melalui kanal media sosial resmi berikut:\n\n${socList}`;
+            }
+            if (query.includes('prestasi') || query.includes('penghargaan') || query.includes('juara') || query.includes('lomba')) {
+                const presList = data.prestasi.map(item => `• **${item.year}** - *${item.title}* oleh ${item.giver}`).join('\n');
+                return `Berikut adalah beberapa penghargaan & prestasi luar biasa yang pernah diraih **${cleanName}**:\n\n${presList}`;
+            }
+            if (query.includes('kolaborasi') || query.includes('undang') || query.includes('narasumber') || query.includes('workshop')) {
+                return `**${cleanName}** melayani undangan dinas sebagai narasumber, instruktur workshop, atau pemateri webinar di seluruh Indonesia.\n\n` +
+                       `Untuk merencanakan kegiatan, silakan lengkapi formulir di menu **Hubungi Saya** atau kirim email langsung ke **noviyachannel@gmail.com**. Kami akan merespons dalam waktu 1x24 jam.`;
+            }
+
+            return `Maaf, saya belum memahami pertanyaan Anda sepenuhnya. \n\nCoba ketik kata kunci seperti:\n` +
+                   `1. *"Siapa noviyalpg?"*\n` +
+                   `2. *"Pengalaman"* untuk melihat riwayat karir\n` +
+                   `3. *"Sertifikat"* untuk kompetensi\n` +
+                   `4. *"Kontak"* untuk WhatsApp\n` +
+                   `5. *"Prestasi"* untuk penghargaan`;
+        }
+
+        // SPA Router & Navigation
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIconContainer = document.getElementById('theme-icon-container');
+
+        function updateThemeIcon(isDark) {
+            if (themeIconContainer) {
+                themeIconContainer.innerHTML = isDark 
+                    ? '<i data-lucide="sun" class="w-5 h-5"></i>' 
+                    : '<i data-lucide="moon" class="w-5 h-5"></i>';
+                lucide.createIcons();
+            }
+        }
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            updateThemeIcon(true);
+        } else {
+            html.classList.remove('dark');
+            updateThemeIcon(false);
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            updateThemeIcon(isDark);
+        });
+
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconContainer = document.getElementById('menu-icon-container');
+        let isMenuOpen = false;
+
+        function toggleMenu(show) {
+            isMenuOpen = show !== undefined ? show : !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                if (menuIconContainer) {
+                    menuIconContainer.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+                }
+            } else {
+                mobileMenu.classList.add('hidden');
+                if (menuIconContainer) {
+                    menuIconContainer.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                }
+            }
+            lucide.createIcons();
+        }
+
+        menuButton.addEventListener('click', () => toggleMenu());
+
+        function router() {
+            let hash = window.location.hash.substring(1) || 'beranda';
+            const validPages = ['beranda', 'tentang', 'pengalaman', 'sertifikasi', 'pelatihan', 'sosmed', 'hubungi', 'admin'];
+            if (!validPages.includes(hash)) hash = 'beranda';
+
+            document.querySelectorAll('.spa-page').forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('animate-fadeIn');
             });
+
+            const targetPage = document.getElementById(hash);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                void targetPage.offsetWidth; 
+                targetPage.classList.add('animate-fadeIn');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const linkHash = link.getAttribute('href').substring(1);
+                link.classList.remove('text-blue-600', 'dark:text-blue-400');
+                if(!link.classList.contains('bg-gradient-to-r') && !link.classList.contains('bg-blue-50') && !link.classList.contains('border')) {
+                    link.classList.add('text-slate-600', 'dark:text-slate-300');
+                }
+                if (linkHash === hash) {
+                    if(!link.classList.contains('bg-gradient-to-r') && !link.classList.contains('bg-blue-50') && !link.classList.contains('border')) {
+                        link.classList.remove('text-slate-600', 'dark:text-slate-300');
+                        link.classList.add('text-blue-600', 'dark:text-blue-400');
+                    }
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            toggleMenu(false);
+        }
+
+        window.addEventListener('hashchange', router);
+        window.addEventListener('DOMContentLoaded', () => { 
+            // Render basic view immediately
+            renderData(); 
+            populateAdminForm(); 
+            
+            // Pemuatan data otomatis langsung dari Spreadsheet saat website dibuka
+            autoLoadCloud(); 
+            router(); 
         });
     </script>
 </body>
