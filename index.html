@@ -71,8 +71,8 @@
     <!-- Background Decoration (Tema Biru Elegan Minimalis) -->
     <div class="fixed inset-0 pointer-events-none z-0 transition-colors duration-300 bg-gradient-to-tr from-slate-50 via-blue-50/30 to-indigo-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
         <!-- Pendaran cahaya biru yang sangat lembut di pojok atas & bawah -->
-        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 dark:bg-blue-500/10 rounded-full filter blur-[120px]"></div>
-        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full filter blur-[120px]"></div>
+        <div class="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-blue-500/5 dark:bg-blue-500/10 rounded-full filter blur-[80px] sm:blur-[120px]"></div>
+        <div class="absolute bottom-0 left-0 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full filter blur-[80px] sm:blur-[120px]"></div>
     </div>
 
     <!-- Navbar -->
@@ -82,7 +82,7 @@
                 <!-- Logo -->
                 <a href="#beranda" class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
                     <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">N</div>
-                    <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+                    <span class="font-bold text-lg sm:text-xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
                         noviyalpg
                     </span>
                 </a>
@@ -118,254 +118,254 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden glass border-t border-slate-200 dark:border-slate-800 shadow-lg absolute w-full">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="#beranda" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Beranda</a>
-                <a href="#tentang" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Tentang</a>
-                <a href="#pengalaman" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Pengalaman</a>
-                <a href="#sertifikasi" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Sertifikasi</a>
-                <a href="#pelatihan" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Pelatihan</a>
-                <a href="#sosmed" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors">Sosmed</a>
+                <a href="#beranda" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium transition-colors">Beranda</a>
+                <a href="#tentang" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium transition-colors">Tentang</a>
+                <a href="#pengalaman" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium transition-colors">Pengalaman</a>
+                <a href="#sertifikasi" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium transition-colors">Sertifikasi</a>
+                <a href="#pelatihan" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium transition-colors">Pelatihan</a>
+                <a href="#sosmed" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium transition-colors">Sosmed</a>
                 <!-- Admin Panel Mobile -->
-                <button onclick="handleAdminAccess()" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium transition-colors border-t border-slate-200 dark:border-slate-800 mt-1 flex items-center gap-2">
-                    <i data-lucide="settings" class="w-5 h-5"></i> Pengaturan Web
+                <button onclick="handleAdminAccess()" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors border-t border-slate-200 dark:border-slate-800 mt-1 flex items-center gap-2">
+                    <i data-lucide="settings" class="w-4 h-4"></i> Pengaturan Web
                 </button>
-                <a href="#hubungi" class="nav-link block px-3 py-2.5 rounded-lg text-base font-medium transition-colors bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mt-2">Hubungi Saya</a>
+                <a href="#hubungi" class="nav-link block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mt-2">Hubungi Saya</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content Wrapper -->
-    <main class="flex-grow pt-24 pb-12 z-10 relative">
+    <main class="flex-grow pt-20 sm:pt-24 pb-12 z-10 relative">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- SPA PAGES SECTION -->
 
             <!-- Halaman: Beranda -->
-            <section id="beranda" class="spa-page hidden text-center pt-10 lg:pt-20 pb-10">
-                <div class="relative inline-block mb-6 group">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden relative z-10 bg-slate-200 dark:bg-slate-700">
+            <section id="beranda" class="spa-page hidden text-center pt-6 sm:pt-10 lg:pt-20 pb-10">
+                <div class="relative inline-block mb-4 sm:mb-6 group">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden relative z-10 bg-slate-200 dark:bg-slate-700">
                         <img id="hero-img-display" src="" alt="Profile" class="w-full h-full object-cover" />
                     </div>
                     <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 blur-md opacity-50 group-hover:opacity-75 transition-opacity -z-10 scale-105"></div>
-                    <div class="absolute -bottom-2 -right-2 bg-white dark:bg-slate-800 p-2 rounded-full shadow-lg z-20">
-                        <i data-lucide="check-circle" class="w-6 h-6 text-blue-500"></i>
+                    <div class="absolute -bottom-1 -right-1 bg-white dark:bg-slate-800 p-1.5 sm:p-2 rounded-full shadow-lg z-20">
+                        <i data-lucide="check-circle" class="w-4 h-4 sm:w-6 sm:h-6 text-blue-500"></i>
                     </div>
                 </div>
 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
-                    <span class="text-slate-900 dark:text-white" id="hero-name-display"></span>
+                <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-3">
+                    <span class="text-slate-900 dark:text-white block sm:inline" id="hero-name-display"></span>
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400" id="hero-title-display"></span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium mb-4" id="hero-subtitle-display"></p>
+                <p class="text-sm sm:text-lg md:text-2xl text-slate-600 dark:text-slate-300 font-medium mb-3" id="hero-subtitle-display"></p>
 
-                <p class="max-w-2xl mx-auto text-base md:text-lg text-slate-500 dark:text-slate-400 mb-10 leading-relaxed" id="hero-desc-display"></p>
+                <p class="max-w-2xl mx-auto text-xs sm:text-base md:text-lg text-slate-500 dark:text-slate-400 mb-8 sm:mb-10 leading-relaxed px-2" id="hero-desc-display"></p>
 
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#hubungi" class="px-8 py-3 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-medium hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-lg flex items-center gap-2 hover:-translate-y-1">
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 px-4">
+                    <a href="#hubungi" class="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-medium hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-lg flex items-center justify-center gap-2 hover:-translate-y-1 text-sm sm:text-base">
                         <i data-lucide="mail" class="w-4 h-4"></i> Hubungi Saya
                     </a>
-                    <a href="#tentang" class="px-8 py-3 rounded-full glass font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm flex items-center gap-2 hover:-translate-y-1">
+                    <a href="#tentang" class="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-full glass font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm flex items-center justify-center gap-2 hover:-translate-y-1 text-sm sm:text-base">
                         Lihat Profil <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                 </div>
 
-                <!-- SEKSI STATISTIK UTAMA (SINKRON CLOUD SECARA OTOMATIS) -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12 pt-8 border-t border-slate-200/50 dark:border-slate-800/50">
-                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
-                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
-                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                <!-- SEKSI STATISTIK UTAMA (DIOPTIMALKAN UNTUK HP) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-200/50 dark:border-slate-800/50 px-2">
+                    <div class="glass p-3.5 sm:p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-1.5 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="book-open" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-pelatihan-display">0</h3>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Jumlah Pelatihan</p>
+                        <h3 class="text-lg sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-0.5" id="stat-pelatihan-display">0</h3>
+                        <p class="text-[9px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Jumlah Pelatihan</p>
                     </div>
                     
-                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
-                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
-                            <i data-lucide="users" class="w-6 h-6"></i>
+                    <div class="glass p-3.5 sm:p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-1.5 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="users" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-peserta-display">0</h3>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Total Peserta</p>
+                        <h3 class="text-lg sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-0.5" id="stat-peserta-display">0</h3>
+                        <p class="text-[9px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Total Peserta</p>
                     </div>
 
-                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
-                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
-                            <i data-lucide="award" class="w-6 h-6"></i>
+                    <div class="glass p-3.5 sm:p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-1.5 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="award" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-sertifikasi-display">0</h3>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Jumlah Sertifikasi</p>
+                        <h3 class="text-lg sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-0.5" id="stat-sertifikasi-display">0</h3>
+                        <p class="text-[9px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Jumlah Sertifikasi</p>
                     </div>
 
-                    <div class="glass p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
-                        <div class="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
-                            <i data-lucide="school" class="w-6 h-6"></i>
+                    <div class="glass p-3.5 sm:p-5 rounded-2xl text-center border border-slate-200/40 dark:border-slate-800/40 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex justify-center mb-1.5 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="school" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1" id="stat-lembaga-display">0</h3>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Sekolah & Kampus</p>
+                        <h3 class="text-lg sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-0.5" id="stat-lembaga-display">0</h3>
+                        <p class="text-[9px] sm:text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Sekolah & Kampus</p>
                     </div>
                 </div>
             </section>
 
             <!-- Halaman: Tentang (Dengan Seksi Prestasi) -->
-            <section id="tentang" class="spa-page hidden pt-6 pb-10">
-                <div class="space-y-8">
+            <section id="tentang" class="spa-page hidden pt-4 sm:pt-6 pb-10">
+                <div class="space-y-6 sm:space-y-8">
                     <!-- Bio & Foto -->
-                    <div class="glass rounded-3xl p-8 md:p-12 shadow-lg relative overflow-hidden border border-slate-200/50 dark:border-slate-700/50">
-                        <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-blue-400 to-indigo-400 opacity-20 rounded-bl-full"></div>
+                    <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg relative overflow-hidden border border-slate-200/50 dark:border-slate-700/50">
+                        <div class="absolute top-0 right-0 w-32 h-32 sm:w-40 sm:h-40 bg-gradient-to-bl from-blue-400 to-indigo-400 opacity-20 rounded-bl-full"></div>
                         
-                        <div class="flex flex-col md:flex-row gap-8 items-center relative z-10">
-                            <div class="flex-1">
-                                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                        <div class="flex flex-col md:flex-row gap-6 sm:gap-8 items-center relative z-10">
+                            <div class="flex-1 order-2 md:order-1">
+                                <h2 class="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-3">
                                     <i data-lucide="sparkles" class="text-yellow-500"></i> Tentang Saya
                                 </h2>
-                                <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6" id="about-desc-display"></p>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                                    <div class="flex items-center gap-4 text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 p-4 rounded-2xl shadow-sm">
-                                        <div class="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-xl"><i data-lucide="map-pin" class="w-5 h-5 text-blue-600 dark:text-blue-400"></i></div>
-                                        <span class="font-medium">Berbasis di Indonesia</span>
+                                <p class="text-sm sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4 sm:mb-6" id="about-desc-display"></p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 sm:mt-8">
+                                    <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 p-3 sm:p-4 rounded-2xl shadow-sm">
+                                        <div class="p-1.5 sm:p-2 bg-blue-100 dark:bg-blue-900/50 rounded-xl"><i data-lucide="map-pin" class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400"></i></div>
+                                        <span class="font-medium text-xs sm:text-sm">Berbasis di Indonesia</span>
                                     </div>
-                                    <div class="flex items-center gap-4 text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 p-4 rounded-2xl shadow-sm">
-                                        <div class="p-2 bg-violet-100 dark:bg-violet-900/50 rounded-xl"><i data-lucide="mail" class="w-5 h-5 text-violet-600 dark:text-violet-400"></i></div>
-                                        <span class="font-medium">Tersedia untuk Kolaborasi</span>
+                                    <div class="flex items-center gap-3 text-slate-700 dark:text-slate-300 bg-white/50 dark:bg-slate-800/50 p-3 sm:p-4 rounded-2xl shadow-sm">
+                                        <div class="p-1.5 sm:p-2 bg-violet-100 dark:bg-violet-900/50 rounded-xl"><i data-lucide="mail" class="w-4 h-4 sm:w-5 sm:h-5 text-violet-600 dark:text-violet-400"></i></div>
+                                        <span class="font-medium text-xs sm:text-sm">Tersedia untuk Kolaborasi</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full md:w-64 shrink-0">
-                                <img id="about-img-display" src="" alt="Tentang" class="w-full h-80 object-cover rounded-2xl shadow-md" />
+                            <div class="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-80 shrink-0 order-1 md:order-2 rounded-2xl overflow-hidden shadow-md">
+                                <img id="about-img-display" src="" alt="Tentang" class="w-full h-full object-cover" />
                             </div>
                         </div>
                     </div>
 
                     <!-- SEKSI PRESTASI & PENGHARGAAN -->
-                    <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50 space-y-6">
-                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50 space-y-4 sm:space-y-6">
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                             <i data-lucide="trophy" class="text-yellow-500"></i> Prestasi & Penghargaan
                         </h2>
-                        <p class="text-sm text-slate-600 dark:text-slate-400">Daftar rekaman pencapaian karir, medali, serta penghargaan inovasi instruktur teknologi pendidikan secara nasional.</p>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Daftar rekaman pencapaian karir, medali, serta penghargaan inovasi instruktur teknologi pendidikan secara nasional.</p>
                         
-                        <div id="prestasi-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div id="prestasi-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                             <!-- Diisi secara dinamis oleh JavaScript -->
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Halaman: Pengalaman -->
-            <section id="pengalaman" class="spa-page hidden pt-6 pb-10">
-                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
-                    <h2 class="text-3xl font-bold mb-10 flex items-center justify-center gap-3"><i data-lucide="briefcase" class="text-blue-500"></i> Jejak Karir & Pendidikan</h2>
-                    <div id="pengalaman-container" class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-4 md:ml-6 space-y-10">
+            <!-- Halaman: Pengalaman (Dinamis) -->
+            <section id="pengalaman" class="spa-page hidden pt-4 sm:pt-6 pb-10">
+                <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-8 flex items-center justify-center gap-3"><i data-lucide="briefcase" class="text-blue-500"></i> Jejak Karir & Pendidikan</h2>
+                    <div id="pengalaman-container" class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-2 sm:ml-4 md:ml-6 space-y-6 sm:space-y-10">
                         <!-- Data dimasukkan oleh Javascript -->
                     </div>
                 </div>
             </section>
 
-            <!-- Halaman: Sertifikasi -->
-            <section id="sertifikasi" class="spa-page hidden pt-6 pb-10">
-                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
-                    <h2 class="text-3xl font-bold mb-8 flex items-center justify-center gap-3"><i data-lucide="award" class="text-blue-500"></i> Sertifikasi Profesional</h2>
-                    <div id="sertifikasi-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Halaman: Sertifikasi (Dinamis) -->
+            <section id="sertifikasi" class="spa-page hidden pt-4 sm:pt-6 pb-10">
+                <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 flex items-center justify-center gap-3"><i data-lucide="award" class="text-blue-500"></i> Sertifikasi Profesional</h2>
+                    <div id="sertifikasi-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         <!-- Data dimasukkan oleh Javascript -->
                     </div>
                 </div>
             </section>
 
-            <!-- Halaman: Pelatihan -->
-            <section id="pelatihan" class="spa-page hidden pt-6 pb-10">
-                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
-                    <h2 class="text-3xl font-bold flex items-center justify-center gap-3 mb-4">
+            <!-- Halaman: Pelatihan (Galeri Dinamis) -->
+            <section id="pelatihan" class="spa-page hidden pt-4 sm:pt-6 pb-10">
+                <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-2xl sm:text-3xl font-bold flex items-center justify-center gap-3 mb-3">
                         <i data-lucide="image" class="text-emerald-500"></i> Dokumentasi Pelatihan
                     </h2>
-                    <p class="text-center text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">Berbagai momen inovatif saat sesi workshop dan bimbingan teknis.</p>
+                    <p class="text-center text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-2">Berbagai momen inovatif saat sesi workshop dan bimbingan teknis.</p>
                     
-                    <div id="pelatihan-gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+                    <div id="pelatihan-gallery-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
                         <!-- Data dimasukkan oleh Javascript -->
                     </div>
                 </div>
             </section>
 
-            <!-- Halaman: Sosial Media -->
-            <section id="sosmed" class="spa-page hidden pt-6 pb-10">
-                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
-                    <h2 class="text-3xl font-bold flex items-center justify-center gap-3 mb-4"><i data-lucide="share-2" class="text-blue-500"></i> Sosial Media</h2>
-                    <p class="text-center text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">Mari berjejaring dan berbagi inspirasi seputar dunia pendidikan dan teknologi interaktif melalui platform sosial media berikut.</p>
+            <!-- Halaman: Sosial Media (Dinamis) -->
+            <section id="sosmed" class="spa-page hidden pt-4 sm:pt-6 pb-10">
+                <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-2xl sm:text-3xl font-bold flex items-center justify-center gap-3 mb-3"><i data-lucide="share-2" class="text-blue-500"></i> Sosial Media</h2>
+                    <p class="text-center text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-2">Mari berjejaring dan berbagi inovasi seputar dunia pendidikan dan teknologi interaktif melalui platform sosial media berikut.</p>
                     
-                    <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
                         <!-- Data dimasukkan oleh Javascript -->
                     </div>
                 </div>
             </section>
 
             <!-- Halaman: Hubungi -->
-            <section id="hubungi" class="spa-page hidden pt-6 pb-10">
-                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
-                    <div class="text-center max-w-3xl mx-auto mb-12">
-                        <span class="px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-100/50 dark:bg-blue-900/30 rounded-full uppercase tracking-wider">Kolaborasi & Sinergi</span>
-                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mt-3 mb-4">Kirim Pesan Kolaborasi & Undang Narasumber</h2>
-                        <p class="text-slate-600 dark:text-slate-400">Diskusikan rencana kegiatan workshop atau webinar Anda bersama narasumber secara profesional.</p>
+            <section id="hubungi" class="spa-page hidden pt-4 sm:pt-6 pb-10">
+                <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+                        <span class="px-2.5 py-0.5 text-[10px] sm:text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-100/50 dark:bg-blue-900/30 rounded-full uppercase tracking-wider">Kolaborasi & Sinergi</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-2 mb-3">Kirim Pesan Kolaborasi & Undang Narasumber</h2>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 px-2">Diskusikan rencana kegiatan workshop atau webinar Anda bersama narasumber secara profesional.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                        <!-- Sisi Kiri: Informasi Kontak -->
-                        <div class="lg:col-span-5 space-y-6">
-                            <div class="bg-white/50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm space-y-6">
-                                <h3 class="text-lg font-bold text-slate-900 dark:text-white pb-3 border-b border-slate-200 dark:border-slate-800">Informasi Kontak</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+                        <!-- Sisi Kiri: Informasi Kontak & Layanan -->
+                        <div class="lg:col-span-5 space-y-4 sm:space-y-6">
+                            <div class="bg-white/50 dark:bg-slate-900/50 p-4 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm space-y-4 sm:space-y-6">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white pb-2 sm:pb-3 border-b border-slate-200 dark:border-slate-800">Informasi Kontak</h3>
                                 
-                                <div class="flex items-start gap-4">
-                                    <div class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-400 shrink-0"><i data-lucide="mail" class="w-5 h-5"></i></div>
-                                    <div>
-                                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Bisnis</p>
-                                        <a href="mailto:noviyachannel@gmail.com" class="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-500 transition-colors">noviyachannel@gmail.com</a>
+                                <div class="flex items-start gap-3 sm:gap-4">
+                                    <div class="p-2 sm:p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-400 shrink-0"><i data-lucide="mail" class="w-4 h-4 sm:w-5 sm:h-5"></i></div>
+                                    <div class="min-w-0">
+                                        <p class="text-[9px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Email Bisnis</p>
+                                        <a href="mailto:noviyachannel@gmail.com" class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-500 transition-colors break-all">noviyachannel@gmail.com</a>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="p-3 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl text-emerald-600 dark:text-emerald-400 shrink-0"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                                <div class="flex items-start gap-3 sm:gap-4">
+                                    <div class="p-2 sm:p-3 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl text-emerald-600 dark:text-emerald-400 shrink-0"><i data-lucide="phone" class="w-4 h-4 sm:w-5 sm:h-5"></i></div>
                                     <div>
-                                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">WhatsApp Resmi</p>
-                                        <a href="https://wa.me/628123456789" target="_blank" class="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-emerald-500 transition-colors">+62 812-3456-789</a>
+                                        <p class="text-[9px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">WhatsApp Resmi</p>
+                                        <a href="https://wa.me/628123456789" target="_blank" class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-emerald-500 transition-colors break-all">+62 812-3456-789</a>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl text-indigo-600 dark:text-indigo-400 shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                                <div class="flex items-start gap-3 sm:gap-4">
+                                    <div class="p-2 sm:p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl text-indigo-600 dark:text-indigo-400 shrink-0"><i data-lucide="map-pin" class="w-4 h-4 sm:w-5 sm:h-5"></i></div>
                                     <div>
-                                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Domisili Kantor</p>
-                                        <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Campang Jaya, Bandar Lampung, Lampung</p>
+                                        <p class="text-[9px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Domisili Kantor</p>
+                                        <p class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">Campang Jaya, Bandar Lampung, Lampung</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Peta Sebaran Luring -->
-                            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 rounded-2xl shadow-md relative overflow-hidden">
+                            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-5 sm:p-6 rounded-2xl shadow-md relative overflow-hidden">
                                 <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-                                <div class="relative z-10 space-y-3">
-                                    <h4 class="font-bold text-lg flex items-center gap-2"><i data-lucide="globe" class="w-5 h-5"></i> Peta Sebaran Luring</h4>
-                                    <p class="text-sm text-blue-100 leading-relaxed">Siap melayani undangan dinas di seluruh wilayah kepulauan Indonesia. 🇮🇩</p>
-                                    <div class="text-4xl pt-2">🇮🇩</div>
+                                <div class="relative z-10 space-y-2 sm:space-y-3">
+                                    <h4 class="font-bold text-base sm:text-lg flex items-center gap-2"><i data-lucide="globe" class="w-4 h-4 sm:w-5 sm:h-5"></i> Peta Sebaran Luring</h4>
+                                    <p class="text-xs sm:text-sm text-blue-100 leading-relaxed">Siap melayani undangan dinas di seluruh wilayah kepulauan Indonesia. 🇮🇩</p>
+                                    <div class="text-3xl sm:text-4xl pt-1">🇮🇩</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Sisi Kanan: Formulir Kolaborasi -->
                         <div class="lg:col-span-7">
-                            <form id="collaboration-form" onsubmit="handleSendEmail(event)" class="bg-white/50 dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm space-y-4">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <form id="collaboration-form" onsubmit="handleSendEmail(event)" class="bg-white/50 dark:bg-slate-900/50 p-5 sm:p-8 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
                                         <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nama Lengkap *</label>
-                                        <input type="text" id="form-name" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm">
+                                        <input type="text" id="form-name" required class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-xs sm:text-sm">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Alamat Email *</label>
-                                        <input type="email" id="form-email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm">
+                                        <input type="email" id="form-email" required class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-xs sm:text-sm">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Sekolah / Instansi / Yayasan</label>
-                                    <input type="text" id="form-institution" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm">
+                                    <input type="text" id="form-institution" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-xs sm:text-sm">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Pesan Utama Anda *</label>
-                                    <textarea id="form-message" required rows="5" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm resize-none" placeholder="Tuliskan detail undangan pelatihan, tanggal pelaksanaan, dan ekspektasi kolaborasi Anda..."></textarea>
+                                    <textarea id="form-message" required rows="4" class="w-full px-3.5 py-2 sm:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-xs sm:text-sm resize-none" placeholder="Tuliskan detail undangan pelatihan, tanggal pelaksanaan, dan ekspektasi kolaborasi Anda..."></textarea>
                                 </div>
 
-                                <button type="submit" id="btn-submit-contact" class="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-md transition-all flex justify-center items-center gap-2 group">
+                                <button type="submit" id="btn-submit-contact" class="w-full py-3 sm:py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-bold shadow-md transition-all flex justify-center items-center gap-2 group text-xs sm:text-sm">
                                     <span id="btn-submit-text">Kirim Pesan Sekarang</span>
                                     <span id="btn-submit-icon-container" class="w-4 h-4 flex items-center justify-center">
                                         <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -377,64 +377,64 @@
                 </div>
             </section>
 
-            <!-- Halaman: ADMIN DASHBOARD (LENGKAP DENGAN KELOLA PRESTASI) -->
-            <section id="admin" class="spa-page hidden pt-6 pb-10">
-                <div class="glass rounded-3xl p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
-                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+            <!-- Halaman: ADMIN DASHBOARD -->
+            <section id="admin" class="spa-page hidden pt-4 sm:pt-6 pb-10">
+                <div class="glass rounded-3xl p-5 sm:p-8 md:p-12 shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                    <h2 class="text-xl sm:text-3xl font-bold mb-4 sm:mb-6 flex items-center gap-3">
                         <i data-lucide="settings" class="text-blue-500"></i> Panel Admin Tersinkronisasi
                     </h2>
 
                     <!-- Banner Info Mode Otomatis -->
-                    <div class="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-xl mb-8 flex gap-3 text-indigo-800 dark:text-indigo-200 text-sm shadow-inner">
-                        <i data-lucide="cloud-lightning" class="w-5 h-5 shrink-0 text-indigo-500"></i>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3.5 sm:p-4 rounded-xl mb-6 sm:mb-8 flex gap-3 text-indigo-800 dark:text-indigo-200 text-xs sm:text-sm shadow-inner">
+                        <i data-lucide="cloud-lightning" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0 text-indigo-500 mt-0.5"></i>
                         <p><strong>Mode Sinkronisasi Cloud Otomatis:</strong> Setiap perubahan yang Anda buat pada formulir di bawah ini akan <strong>otomatis diperbarui di Google Spreadsheet Anda</strong> secara instan.</p>
                     </div>
 
                     <!-- Profil & Tentang Form -->
-                    <form id="admin-form" class="space-y-8 bg-white/50 dark:bg-slate-800/50 p-6 rounded-2xl border dark:border-slate-700">
+                    <form id="admin-form" class="space-y-6 sm:space-y-8 bg-white/50 dark:bg-slate-800/50 p-4 sm:p-6 rounded-2xl border dark:border-slate-700 text-xs sm:text-sm">
                         <div class="space-y-4">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700"><i data-lucide="user" class="inline w-5 h-5 mb-1 text-blue-500"></i> Profil & Tentang Saya</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div><label class="block text-sm font-medium mb-1">Nama</label><input type="text" id="admin-hero-name" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
-                                <div><label class="block text-sm font-medium mb-1">Gelar / Title</label><input type="text" id="admin-hero-title" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
-                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Sub-title Profesi</label><input type="text" id="admin-hero-subtitle" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
-                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Kutipan (Quotes)</label><textarea id="admin-hero-desc" rows="2" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></textarea></div>
-                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">URL Foto Profil <span class="text-blue-500">(Wajib imgur.com)</span></label><input type="url" id="admin-hero-img" pattern=".*imgur\.com.*" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
-                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Deskripsi Lengkap (Tentang)</label><textarea id="admin-about-desc" rows="3" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></textarea></div>
-                                <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">URL Foto Tentang <span class="text-blue-500">(Wajib imgur.com)</span></label><input type="url" id="admin-about-img" pattern=".*imgur\.com.*" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                            <h3 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700"><i data-lucide="user" class="inline w-4 h-4 sm:w-5 sm:h-5 mb-0.5 text-blue-500"></i> Profil & Tentang Saya</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                                <div><label class="block font-medium mb-1">Nama</label><input type="text" id="admin-hero-name" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block font-medium mb-1">Gelar / Title</label><input type="text" id="admin-hero-title" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div class="md:col-span-2"><label class="block font-medium mb-1">Sub-title Profesi</label><input type="text" id="admin-hero-subtitle" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div class="md:col-span-2"><label class="block font-medium mb-1">Kutipan (Quotes)</label><textarea id="admin-hero-desc" rows="2" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></textarea></div>
+                                <div class="md:col-span-2"><label class="block font-medium mb-1">URL Foto Profil <span class="text-blue-500">(Wajib imgur.com)</span></label><input type="url" id="admin-hero-img" pattern=".*imgur\.com.*" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div class="md:col-span-2"><label class="block font-medium mb-1">Deskripsi Lengkap (Tentang)</label><textarea id="admin-about-desc" rows="3" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></textarea></div>
+                                <div class="md:col-span-2"><label class="block font-medium mb-1">URL Foto Tentang <span class="text-blue-500">(Wajib imgur.com)</span></label><input type="url" id="admin-about-img" pattern=".*imgur\.com.*" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
                             </div>
                         </div>
 
                         <!-- INPUT EDIT STATISTIK UTAMA -->
                         <div class="space-y-4">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700"><i data-lucide="trending-up" class="inline w-5 h-5 mb-1 text-blue-500"></i> Statistik Beranda</h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                                <div><label class="block text-sm font-medium mb-1">Jumlah Pelatihan</label><input type="text" id="admin-stat-pelatihan" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
-                                <div><label class="block text-sm font-medium mb-1">Total Peserta</label><input type="text" id="admin-stat-peserta" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
-                                <div><label class="block text-sm font-medium mb-1">Jumlah Sertifikasi</label><input type="text" id="admin-stat-sertifikasi" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
-                                <div><label class="block text-sm font-medium mb-1">Sekolah & Kampus</label><input type="text" id="admin-stat-lembaga" class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                            <h3 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700"><i data-lucide="trending-up" class="inline w-4 h-4 sm:w-5 sm:h-5 mb-0.5 text-blue-500"></i> Statistik Beranda</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                                <div><label class="block font-medium mb-1">Jumlah Pelatihan</label><input type="text" id="admin-stat-pelatihan" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block font-medium mb-1">Total Peserta</label><input type="text" id="admin-stat-peserta" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block font-medium mb-1">Jumlah Sertifikasi</label><input type="text" id="admin-stat-sertifikasi" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                                <div><label class="block font-medium mb-1">Sekolah & Kampus</label><input type="text" id="admin-stat-lembaga" class="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"></div>
                             </div>
                         </div>
 
-                        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors shadow-md flex items-center gap-2">
+                        <button type="submit" class="w-full sm:w-auto px-6 py-2.5 sm:py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors shadow-md flex items-center justify-center gap-2">
                             <i data-lucide="save" class="w-4 h-4"></i> Simpan & Sinkron Profil & Statistik
                         </button>
                     </form>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mt-10 sm:mt-12 text-xs sm:text-sm">
                         
                         <!-- KELOLA PRESTASI -->
                         <div class="space-y-4">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="trophy" class="w-5 h-5 text-yellow-500"></i> Kelola Prestasi</h3>
-                            <div id="admin-prestasi-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
-                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                            <h3 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="trophy" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500"></i> Kelola Prestasi</h3>
+                            <div id="admin-prestasi-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                                     <input type="text" id="new-pres-year" placeholder="Tahun (Cth: 2024)" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="text" id="new-pres-title" placeholder="Nama Prestasi" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="text" id="new-pres-giver" placeholder="Penyelenggara / Instansi" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                 </div>
                                 <div class="flex gap-2">
-                                    <button type="button" id="btn-pres-action" onclick="savePrestasi()" class="flex-1 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 flex justify-center items-center gap-2">
+                                    <button type="button" id="btn-pres-action" onclick="savePrestasi()" class="flex-1 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 flex justify-center items-center gap-2 font-semibold">
                                         <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
                                     </button>
                                     <button type="button" id="btn-pres-cancel" onclick="cancelEditPrestasi()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
@@ -446,17 +446,17 @@
 
                         <!-- KELOLA PENGALAMAN -->
                         <div class="space-y-4">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-blue-500"></i> Kelola Pengalaman</h3>
-                            <div id="admin-pengalaman-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
-                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                            <h3 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="briefcase" class="w-4 h-4 sm:w-5 sm:h-5 text-blue-500"></i> Kelola Pengalaman</h3>
+                            <div id="admin-pengalaman-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                                     <input type="text" id="new-exp-period" placeholder="Waktu (Cth: 2021-Skrg)" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="text" id="new-exp-role" placeholder="Posisi / Gelar" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="text" id="new-exp-inst" placeholder="Nama Instansi" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <textarea id="new-exp-desc" rows="2" placeholder="Deskripsi Singkat" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none resize-none"></textarea>
                                 </div>
                                 <div class="flex gap-2">
-                                    <button type="button" id="btn-exp-action" onclick="savePengalaman()" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex justify-center items-center gap-2">
+                                    <button type="button" id="btn-exp-action" onclick="savePengalaman()" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex justify-center items-center gap-2 font-semibold">
                                         <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
                                     </button>
                                     <button type="button" id="btn-exp-cancel" onclick="cancelEditPengalaman()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
@@ -468,16 +468,16 @@
 
                         <!-- KELOLA SERTIFIKASI -->
                         <div class="space-y-4 font-normal">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="award" class="w-5 h-5 text-violet-500"></i> Kelola Sertifikasi</h3>
-                            <div id="admin-sertifikasi-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
-                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                            <h3 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 sm:w-5 sm:h-5 text-violet-500"></i> Kelola Sertifikasi</h3>
+                            <div id="admin-sertifikasi-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                                     <input type="text" id="new-cert-title" placeholder="Judul Sertifikasi" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="text" id="new-cert-issuer" placeholder="Penerbit (Cth: Google)" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="url" id="new-cert-img" placeholder="URL Foto (Wajib imgur.com)" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                 </div>
                                 <div class="flex gap-2">
-                                    <button type="button" id="btn-cert-action" onclick="saveSertifikasi()" class="flex-1 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 flex justify-center items-center gap-2">
+                                    <button type="button" id="btn-cert-action" onclick="saveSertifikasi()" class="flex-1 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 flex justify-center items-center gap-2 font-semibold">
                                         <i data-lucide="plus" class="w-4 h-4"></i> Tambah & Sinkron
                                     </button>
                                     <button type="button" id="btn-cert-cancel" onclick="cancelEditSertifikasi()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
@@ -489,16 +489,16 @@
 
                         <!-- KELOLA GALERI PELATIHAN -->
                         <div class="space-y-4">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="image" class="w-5 h-5 text-emerald-500"></i> Kelola Galeri Pelatihan</h3>
-                            <div id="admin-gallery-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
-                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                            <h3 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="image" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500"></i> Kelola Galeri Pelatihan</h3>
+                            <div id="admin-gallery-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                                     <input type="text" id="new-gal-title" placeholder="Judul Kegiatan" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="text" id="new-gal-loc" placeholder="Lokasi & Tahun" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                     <input type="url" id="new-gal-img" placeholder="URL Foto (Wajib imgur.com)" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                 </div>
                                 <div class="flex gap-2">
-                                    <button type="button" id="btn-gal-action" onclick="saveGalleryItem()" class="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 flex justify-center items-center gap-2">
+                                    <button type="button" id="btn-gal-action" onclick="saveGalleryItem()" class="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 flex justify-center items-center gap-2 font-semibold">
                                         <i data-lucide="plus" class="w-4 h-4"></i> Tambah Foto Galeri
                                     </button>
                                     <button type="button" id="btn-gal-cancel" onclick="cancelEditGalleryItem()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
@@ -510,10 +510,10 @@
 
                         <!-- KELOLA SOSIAL MEDIA -->
                         <div class="space-y-4">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="share-2" class="text-pink-500"></i> Kelola Sosial Media</h3>
-                            <div id="admin-sosmed-list" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
-                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm text-sm">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                            <h3 class="text-base sm:text-xl font-bold text-slate-900 dark:text-white border-b pb-2 dark:border-slate-700 flex items-center gap-2"><i data-lucide="share-2" class="text-pink-500"></i> Kelola Sosial Media</h3>
+                            <div id="admin-sosmed-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-2"></div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border dark:border-slate-700 shadow-sm">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                                     <select id="new-soc-platform" class="px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none text-slate-700 dark:text-slate-200">
                                         <option value="youtube">YouTube</option>
                                         <option value="instagram">Instagram</option>
@@ -528,7 +528,7 @@
                                     <input type="url" id="new-soc-url" placeholder="URL Profil Sosmed (https://...)" class="col-span-1 md:col-span-2 px-3 py-2 rounded bg-white dark:bg-slate-900 border dark:border-slate-700 outline-none">
                                 </div>
                                 <div class="flex gap-2">
-                                    <button type="button" id="btn-soc-action" onclick="saveSosmed()" class="flex-1 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 flex justify-center items-center gap-2">
+                                    <button type="button" id="btn-soc-action" onclick="saveSosmed()" class="flex-1 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 flex justify-center items-center gap-2 font-semibold">
                                         <i data-lucide="plus" class="w-4 h-4"></i> Tambah Sosmed
                                     </button>
                                     <button type="button" id="btn-soc-cancel" onclick="cancelEditSosmed()" class="hidden px-4 py-2 bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg hover:bg-slate-400 dark:hover:bg-slate-600 flex justify-center items-center font-medium">
@@ -547,79 +547,79 @@
 
     <!-- KATA SANDI MODAL POPUP -->
     <div id="password-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/60 backdrop-blur-sm px-4">
-        <div class="glass w-full max-w-md p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col items-center gap-4 text-center">
-            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-md">
-                <i data-lucide="lock" class="w-6 h-6"></i>
+        <div class="glass w-full max-w-md p-5 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col items-center gap-4 text-center">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-md">
+                <i data-lucide="lock" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
             <div>
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Akses Terkunci</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Harap masukkan kata sandi Anda untuk mengakses Panel Admin</p>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Akses Terkunci</h3>
+                <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">Harap masukkan kata sandi Anda untuk mengakses Panel Admin</p>
             </div>
             <div class="w-full relative">
-                <input type="password" id="admin-password-input" placeholder="Masukkan kata sandi..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-center focus:ring-2 focus:ring-blue-500 outline-none text-sm tracking-widest font-bold">
+                <input type="password" id="admin-password-input" placeholder="Masukkan kata sandi..." class="w-full px-4 py-2 sm:py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-center focus:ring-2 focus:ring-blue-500 outline-none text-xs sm:text-sm tracking-widest font-bold">
             </div>
-            <div class="flex gap-2 w-full">
-                <button onclick="closePasswordModal()" class="flex-1 py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Batal</button>
-                <button onclick="submitAdminPassword()" class="flex-1 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-md transition-colors">Masuk</button>
+            <div class="flex gap-2 w-full text-xs sm:text-sm">
+                <button onclick="closePasswordModal()" class="flex-1 py-2 sm:py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                <button onclick="submitAdminPassword()" class="flex-1 py-2 sm:py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md transition-colors">Masuk</button>
             </div>
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="fixed bottom-20 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+    <div id="toast-container" class="fixed bottom-20 right-4 sm:right-6 z-50 flex flex-col gap-2 max-w-[calc(100vw-2rem)] sm:max-w-sm pointer-events-none"></div>
 
-    <!-- WIDGET CHATBOT AI INTERAKTIF / ASISTEN VIRTUAL -->
-    <div class="fixed bottom-6 right-20 z-40">
+    <!-- WIDGET CHATBOT AI INTERAKTIF / ASISTEN VIRTUAL (DIOPTIMALKAN UNTUK HP) -->
+    <div class="fixed bottom-6 right-16 sm:right-20 z-40">
         <!-- Floating Chatbot Toggle Button -->
-        <button id="chatbot-toggle" onclick="toggleChatbot()" class="p-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center relative group">
-            <span id="chatbot-icon-container" class="w-6 h-6 flex items-center justify-center">
-                <i data-lucide="message-square" class="w-6 h-6"></i>
+        <button id="chatbot-toggle" onclick="toggleChatbot()" class="p-3.5 sm:p-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center relative group">
+            <span id="chatbot-icon-container" class="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
+                <i data-lucide="message-square" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </span>
-            <span class="absolute right-14 bg-slate-900 text-white text-xs px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">Tanya Asisten Virtual</span>
+            <span class="absolute right-14 bg-slate-900 text-white text-[10px] sm:text-xs px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">Tanya Asisten Virtual</span>
         </button>
 
-        <!-- Chat Window Panel -->
-        <div id="chatbot-window" class="hidden absolute bottom-16 right-0 w-80 sm:w-96 h-[480px] rounded-2xl glass border border-slate-200/50 dark:border-slate-800/50 shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
+        <!-- Chat Window Panel (UKURAN SANGAT PAS DI HP) -->
+        <div id="chatbot-window" class="hidden absolute bottom-14 sm:bottom-16 -right-12 sm:right-0 w-[calc(100vw-2rem)] sm:w-96 h-[380px] sm:h-[480px] rounded-2xl glass border border-slate-200/50 dark:border-slate-800/50 shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
             <!-- Header -->
-            <div class="p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-between shadow-sm">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold relative shrink-0">
+            <div class="p-3 sm:p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-2 sm:gap-2.5">
+                    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 flex items-center justify-center font-bold relative shrink-0 text-xs sm:text-sm">
                         N
-                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-400 border-2 border-indigo-600"></span>
+                        <span class="absolute bottom-0 right-0 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-green-400 border-2 border-indigo-600"></span>
                     </div>
                     <div>
-                        <h4 class="font-bold text-sm">Asisten Virtual</h4>
-                        <p class="text-[10px] text-blue-100 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Aktif & Siap Membantu</p>
+                        <h4 class="font-bold text-xs sm:text-sm">Asisten Virtual</h4>
+                        <p class="text-[9px] sm:text-[10px] text-blue-100 flex items-center gap-1"><span class="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-green-400"></span> Aktif & Siap Membantu</p>
                     </div>
                 </div>
                 <button onclick="toggleChatbot()" class="p-1 rounded-lg hover:bg-white/10 transition-colors text-white">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+                    <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </button>
             </div>
 
             <!-- Chat Area (Scrollable) -->
-            <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto space-y-3 scroll-smooth text-sm bg-slate-50/50 dark:bg-slate-950/50">
+            <div id="chatbot-messages" class="flex-1 p-3 sm:p-4 overflow-y-auto space-y-2.5 sm:space-y-3 scroll-smooth text-xs sm:text-sm bg-slate-50/50 dark:bg-slate-950/50">
                 <!-- Bot Welcome Message -->
-                <div class="flex gap-2 items-start max-w-[85%]">
-                    <div class="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">N</div>
-                    <div class="bg-white dark:bg-slate-900 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/50 dark:border-slate-800/50 text-slate-700 dark:text-slate-300 leading-relaxed">
+                <div class="flex gap-2 items-start max-w-[90%] sm:max-w-[85%]">
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold text-[10px] sm:text-xs shrink-0">N</div>
+                    <div class="bg-white dark:bg-slate-900 p-2.5 sm:p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/50 dark:border-slate-800/50 text-slate-700 dark:text-slate-300 leading-relaxed">
                         Halo! Saya adalah Asisten Virtual dari **noviyalpg**. Ada yang bisa saya bantu terkait informasi profil, pengalaman, sertifikasi, atau jadwal narasumber?
                     </div>
                 </div>
             </div>
 
             <!-- Quick Suggestions (Chips) -->
-            <div class="px-4 py-2 flex gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none border-t border-slate-100 dark:border-slate-900/60 bg-white/30 dark:bg-slate-900/30 shrink-0">
-                <button onclick="sendQuickReply('Siapa noviyalpg?')" class="text-xs px-2.5 py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Siapa noviyalpg?</button>
-                <button onclick="sendQuickReply('Bagaimana cara kolaborasi?')" class="text-xs px-2.5 py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Undang Narasumber</button>
-                <button onclick="sendQuickReply('Minta WhatsApp & Email')" class="text-xs px-2.5 py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Minta Kontak</button>
+            <div class="px-3 sm:px-4 py-1.5 sm:py-2 flex gap-1 sm:gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none border-t border-slate-100 dark:border-slate-900/60 bg-white/30 dark:bg-slate-900/30 shrink-0">
+                <button onclick="sendQuickReply('Siapa noviyalpg?')" class="text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Siapa noviyalpg?</button>
+                <button onclick="sendQuickReply('Bagaimana cara kolaborasi?')" class="text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Undang Narasumber</button>
+                <button onclick="sendQuickReply('Minta WhatsApp & Email')" class="text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200/60 dark:border-slate-700 rounded-full transition-all text-slate-600 dark:text-slate-300">Minta Kontak</button>
             </div>
 
             <!-- Input Area -->
-            <div class="p-3 border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900 flex gap-2 shrink-0">
-                <input type="text" id="chatbot-input" onkeypress="handleChatKeyPress(event)" placeholder="Ketik pertanyaan Anda di sini..." class="flex-1 px-4 py-2 text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500 transition-all">
-                <button onclick="submitUserChat()" class="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all flex items-center justify-center">
-                    <i data-lucide="send" class="w-4 h-4"></i>
+            <div class="p-2 sm:p-3 border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900 flex gap-2 shrink-0">
+                <input type="text" id="chatbot-input" onkeypress="handleChatKeyPress(event)" placeholder="Ketik pertanyaan..." class="flex-1 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                <button onclick="submitUserChat()" class="p-2 sm:p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all flex items-center justify-center">
+                    <i data-lucide="send" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                 </button>
             </div>
         </div>
@@ -627,10 +627,10 @@
 
     <!-- Footer -->
     <footer class="glass border-t border-slate-200 dark:border-slate-800 mt-auto z-10 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                <p> Copyright © 2026 noviyalpg creative. Semua Hak Cipta Dilindungi.</p>
-                <div class="flex items-center gap-1.5 mt-4 sm:mt-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 gap-3">
+                <p class="text-center sm:text-left"> Copyright © 2026 noviyalpg creative. Semua Hak Cipta Dilindungi.</p>
+                <div class="flex items-center gap-1.5">
                     <span>Dibuat dengan</span> <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500 animate-pulse"></i> <span>di Indonesia</span>
                 </div>
             </div>
@@ -638,8 +638,8 @@
     </footer>
 
     <!-- Floating Action Button -->
-    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
-        <button id="theme-toggle" class="p-3.5 rounded-full glass shadow-lg hover:scale-110 transition-transform text-slate-700 dark:text-yellow-400 focus:outline-none">
+    <div class="fixed bottom-6 right-4 sm:right-6 z-40 flex flex-col gap-3">
+        <button id="theme-toggle" class="p-3 sm:p-3.5 rounded-full glass shadow-lg hover:scale-110 transition-transform text-slate-700 dark:text-yellow-400 focus:outline-none">
             <span id="theme-icon-container" class="w-5 h-5 flex items-center justify-center">
                 <i data-lucide="sun" class="w-5 h-5"></i>
             </span>
@@ -648,11 +648,7 @@
 
     <!-- JavaScript Data, Interaction & SPA Router -->
     <script>
-        // ----------------------------------------------------
-        // DEFINISI FUNGSI UTAMA DI LETAKKAN DI BARIS TERATAS SKRIP
-        // ----------------------------------------------------
-
-        // Sistem notifikasi mengambang (Toast)
+        // 1. Fungsi showToast diletakkan di paling atas untuk global availability
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             if (!container) return;
@@ -670,9 +666,9 @@
             }
             
             const toastHtml = `
-                <div id="${id}" class="flex items-center gap-3 p-4 rounded-xl border shadow-lg glass pointer-events-auto transition-all duration-300 transform translate-y-4 opacity-0 max-w-sm ${bgClass}">
-                    <i data-lucide="${icon}" class="w-5 h-5 shrink-0"></i>
-                    <p class="text-sm font-medium leading-normal">${message}</p>
+                <div id="${id}" class="flex items-center gap-3 p-3 sm:p-4 rounded-xl border shadow-lg glass pointer-events-auto transition-all duration-300 transform translate-y-4 opacity-0 max-w-sm ${bgClass}">
+                    <i data-lucide="${icon}" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
+                    <p class="text-xs sm:text-sm font-medium leading-normal">${message}</p>
                 </div>
             `;
             
@@ -691,6 +687,31 @@
                 }
             }, 4500);
         }
+
+        // Penolong cerdas untuk ekstraksi tahun dari string text periode Pengalaman (Aman dari tipe data non-string)
+        const getYearFromPeriod = (period) => {
+            if (period === undefined || period === null) return 0;
+            // Ubah tipe data menjadi string secara paksa untuk menghindari 'period.toLowerCase is not a function'
+            const periodStr = String(period).trim();
+            if (!periodStr) return 0;
+            
+            // Jika terdapat string 'sekarang' atau 'present', berikan nilai prioritas tertinggi
+            if (periodStr.toLowerCase().includes('sekarang') || periodStr.toLowerCase().includes('present')) {
+                return 9999;
+            }
+            const match = periodStr.match(/\d{4}/);
+            return match ? parseInt(match[0]) : 0;
+        };
+
+        // Penolong cerdas untuk ekstraksi tahun dari string lokasi Pelatihan / Galeri (Aman dari tipe data non-string)
+        const getYearFromLoc = (loc) => {
+            if (loc === undefined || loc === null) return 0;
+            const locStr = String(loc).trim();
+            if (!locStr) return 0;
+            
+            const match = locStr.match(/\d{4}/);
+            return match ? parseInt(match[0]) : 0;
+        };
 
         // Data Utama Portofolio (In-Memory Fallback)
         const defaultData = {
@@ -778,28 +799,28 @@
         function getSosmedLogoSVG(platform) {
             switch(platform.toLowerCase()) {
                 case 'youtube':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837z" fill="#FF0000"/><path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837z" fill="#FF0000"/><path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FFFFFF"/></svg>`;
                 case 'instagram':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FED731" /><stop offset="25%" stop-color="#F57620" /><stop offset="50%" stop-color="#E1306C" /><stop offset="75%" stop-color="#C13584" /><stop offset="100%" stop-color="#405DE6" /></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig-grad)"/><rect x="5" y="5" width="14" height="14" rx="4" stroke="white" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="2" fill="none"/><circle cx="16.5" cy="7.5" r="1.2" fill="white"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FED731" /><stop offset="25%" stop-color="#F57620" /><stop offset="50%" stop-color="#E1306C" /><stop offset="75%" stop-color="#C13584" /><stop offset="100%" stop-color="#405DE6" /></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig-grad)"/><rect x="5" y="5" width="14" height="14" rx="4" stroke="white" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="2" fill="none"/><circle cx="16.5" cy="7.5" r="1.2" fill="white"/></svg>`;
                 case 'tiktok':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#010101"/><path d="M11.53 18.52c-2.31 0-4.18-1.87-4.18-4.18s1.87-4.18 4.18-4.18c.24 0 .47.02.7.06v-3.13a7.35 7.35 0 0 0-4.88 1.83 7.33 7.33 0 0 0-2.45 5.42c0 4.07 3.55 7.37 7.63 7.37s7.37-3.3 7.37-7.37v-6.93a5.55 5.55 0 0 0 3.09 1.48V4.28c-.89-.01-1.74-.3-2.45-.85A5.19 5.19 0 0 1 14.65.62h-3.12v12.07c0 1.25-1.02 2.27-2.27 2.27s-2.27-1.02-2.27-2.27 1.02-2.27 2.27-2.27c.24 0 .47.04.7.11v-3.13c-.23-.04-.46-.06-.7-.06a5.41 5.41 0 0 0-5.41 5.41 5.41 5.41 0 0 0 5.41 5.41c2.1 0 3.91-1.2 4.79-2.95v1.27c0 2.27-1.02 4.18-3.13 4.18z" fill="#00f2fe"/><path d="M12.525.02c1.31-.02 2.61-.01 3.91.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#fe0979"/><path d="M12.01 0c1.31 0 2.62.01 3.93.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#ffffff"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#010101"/><path d="M11.53 18.52c-2.31 0-4.18-1.87-4.18-4.18s1.87-4.18 4.18-4.18c.24 0 .47.02.7.06v-3.13a7.35 7.35 0 0 0-4.88 1.83 7.33 7.33 0 0 0-2.45 5.42c0 4.07 3.55 7.37 7.63 7.37s7.37-3.3 7.37-7.37v-6.93a5.55 5.55 0 0 0 3.09 1.48V4.28c-.89-.01-1.74-.3-2.45-.85A5.19 5.19 0 0 1 14.65.62h-3.12v12.07c0 1.25-1.02 2.27-2.27 2.27s-2.27-1.02-2.27-2.27 1.02-2.27 2.27-2.27c.24 0 .47.04.7.11v-3.13c-.23-.04-.46-.06-.7-.06a5.41 5.41 0 0 0-5.41 5.41 5.41 0 0 0 5.41 5.41c2.1 0 3.91-1.2 4.79-2.95v1.27c0 2.27-1.02 4.18-3.13 4.18z" fill="#00f2fe"/><path d="M12.525.02c1.31-.02 2.61-.01 3.91.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#fe0979"/><path d="M12.01 0c1.31 0 2.62.01 3.93.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="#ffffff"/></svg>`;
                 case 'facebook':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/></svg>`;
                 case 'globe':
                 case 'blog':
                 case 'website':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#10B981"/><circle cx="12" cy="12" r="8" stroke="white" stroke-width="1.8" fill="none"/><path d="M4 12h16M12 4a15.3 15.3 0 0 1 4 8 15.3 15.3 0 0 1-4 8 15.3 15.3 0 0 1-4-8 15.3 15.3 0 0 1 4-8z" stroke="white" stroke-width="1.2" fill="none"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#10B981"/><circle cx="12" cy="12" r="8" stroke="white" stroke-width="1.8" fill="none"/><path d="M4 12h16M12 4a15.3 15.3 0 0 1 4 8 15.3 15.3 0 0 1-4 8 15.3 15.3 0 0 1-4-8 15.3 15.3 0 0 1 4-8z" stroke="white" stroke-width="1.2" fill="none"/></svg>`;
                 case 'message-circle':
                 case 'whatsapp':
                 case 'wa':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12.012 4.5c-4.14 0-7.51 3.37-7.51 7.51 0 1.32.46 2.61 1.31 3.69L5 20.01l4.22-1.11a7.44 7.44 0 0 0 3.79.99h.004c4.14 0 7.511-3.37 7.511-7.51 0-2.01-.782-3.89-2.203-5.31A7.445 7.445 0 0 0 12.012 4.5z" fill="#25D366"/><path d="M12.012 5.5c1.74 0 3.38.68 4.6 1.9s1.9 2.86 1.9 4.6c0 3.58-2.92 6.5-6.5 6.5-.95 0-1.89-.25-2.71-.72l-.24-.14-2.5.65.67-2.43-.16-.25a6.45 7.45 0 0 1-.97-3.61c0-3.58 2.91-6.5 6.5-6.5zm3.17 4.14c-.16-.08-.92-.46-1.07-.51-.15-.05-.25-.08-.36.08-.11.16-.42.51-.52.62-.1.11-.19.12-.35.04-.16-.08-.68-.25-1.29-.79-.48-.42-.8-1-1-.16-.24-.1-.01-.37.1-.11.1-.09.16-.16.24.05.08.11.1.16.16.05.11.03.1.25-.02.2-.08.1-.15.42-.42.51-.05.11-.1.16-.15.22-.05.05-.1.15.02.25.1.11.88 1.44 2.11 2.5.4.38.74.5 1 .59.43.14.82.12 1.13.06.34-.06.92-.38 1.05-.75.13-.37.13-.69.09-.75-.04-.06-.15-.1-.31-.18z" fill="white"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12.012 4.5c-4.14 0-7.51 3.37-7.51 7.51 0 1.32.46 2.61 1.31 3.69L5 20.01l4.22-1.11a7.44 7.44 0 0 0 3.79.99h.004c4.14 0 7.511-3.37 7.511-7.51 0-2.01-.782-3.89-2.203-5.31A7.445 7.445 0 0 0 12.012 4.5z" fill="#25D366"/><path d="M12.012 5.5c1.74 0 3.38.68 4.6 1.9s1.9 2.86 1.9 4.6c0 3.58-2.92 6.5-6.5 6.5-.95 0-1.89-.25-2.71-.72l-.24-.14-2.5.65.67-2.43-.16-.25a6.45 7.45 0 0 1-.97-3.61c0-3.58 2.91-6.5 6.5-6.5zm3.17 4.14c-.16-.08-.92-.46-1.07-.51-.15-.05-.25-.08-.36.08-.11.16-.42.51-.52.62-.1.11-.19.12-.35.04-.16-.08-.68-.25-1.29-.79-.48-.42-.8-1-1-.16-.24-.1-.01-.37.1-.11.1-.09.16-.16.24.05.08.11.1.16.16.05.11.03.1.25-.02.2-.08.1-.15.42-.42.51-.05.11-.1.16-.15.22-.05.05-.1.15.02.25.1.11.88 1.44 2.11 2.5.4.38.74.5 1 .59.43.14.82.12 1.13.06.34-.06.92-.38 1.05-.75.13-.37.13-.69.09-.75-.04-.06-.15-.1-.31-.18z" fill="white"/></svg>`;
                 case 'linkedin':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#0A66C2"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="#0A66C2"/></svg>`;
                 case 'twitter':
                 case 'x':
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#000000"/><path d="M18.244 2.25h3.308l-7.227 7.69 8.502 11.81H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.235L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="#FFFFFF"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#000000"/><path d="M18.244 2.25h3.308l-7.227 7.69 8.502 11.81H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.235L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="#FFFFFF"/></svg>`;
                 default:
-                    return `<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#3B82F6"/><path d="M12 4v16m-8-8h16" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>`;
+                    return `<svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#3B82F6"/><path d="M12 4v16m-8-8h16" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>`;
             }
         }
 
@@ -834,18 +855,25 @@
             document.getElementById('stat-sertifikasi-display').innerText = portfolioData.statSertifikasi || "0";
             document.getElementById('stat-lembaga-display').innerText = portfolioData.statLembaga || "0";
 
-            // Render Prestasi (BARU & DINAMIS)
+            // Render Prestasi (DIURUTKAN TERBARU -> TERLAMA)
             const prestasiContainer = document.getElementById('prestasi-container');
             if (portfolioData.prestasi && portfolioData.prestasi.length > 0) {
-                prestasiContainer.innerHTML = portfolioData.prestasi.map((item) => `
-                    <div class="bg-white/60 dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex gap-4 items-start hover:shadow-md transition-shadow">
-                        <div class="p-2.5 bg-yellow-50 dark:bg-yellow-950/40 rounded-xl text-yellow-600 dark:text-yellow-400 shrink-0 mt-0.5">
-                            <i data-lucide="award" class="w-5 h-5"></i>
+                // Urutkan dari tahun terbaru (descending)
+                const sortedPrestasi = [...portfolioData.prestasi].sort((a, b) => {
+                    const yearA = parseInt(a.year) || 0;
+                    const yearB = parseInt(b.year) || 0;
+                    return yearB - yearA;
+                });
+                
+                prestasiContainer.innerHTML = sortedPrestasi.map((item) => `
+                    <div class="bg-white/60 dark:bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex gap-3 sm:gap-4 items-start hover:shadow-md transition-shadow">
+                        <div class="p-2 sm:p-2.5 bg-yellow-50 dark:bg-yellow-950/40 rounded-xl text-yellow-600 dark:text-yellow-400 shrink-0 mt-0.5">
+                            <i data-lucide="award" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                         </div>
-                        <div>
-                            <span class="text-xs font-bold text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/40 px-2 py-0.5 rounded-full">${item.year}</span>
-                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-base mt-1.5 leading-tight">${item.title}</h3>
-                            <p class="text-xs text-slate-500 mt-1">${item.giver}</p>
+                        <div class="min-w-0">
+                            <span class="text-[10px] font-bold text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/40 px-2 py-0.5 rounded-full">${item.year}</span>
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 text-sm sm:text-base mt-1.5 leading-tight break-words">${item.title}</h3>
+                            <p class="text-[11px] sm:text-xs text-slate-500 mt-1 break-words">${item.giver}</p>
                         </div>
                     </div>
                 `).join('');
@@ -853,61 +881,75 @@
                 prestasiContainer.innerHTML = '<p class="col-span-2 text-sm text-slate-500 italic text-center py-4">Belum ada prestasi yang ditambahkan.</p>';
             }
 
-            // Render Pengalaman
+            // Render Pengalaman (DIURUTKAN TERBARU -> TERLAMA)
             const expContainer = document.getElementById('pengalaman-container');
-            expContainer.innerHTML = portfolioData.pengalaman.map((item, i) => {
-                const color = i % 2 === 0 ? 'blue' : 'violet';
-                return `
-                <div class="relative pl-8 md:pl-0">
-                    <div class="md:hidden absolute w-4 h-4 bg-${color}-500 rounded-full -left-[9px] top-1 border-4 border-white dark:border-slate-900"></div>
-                    <div class="md:grid md:grid-cols-5 gap-8 items-start">
-                        <div class="hidden md:block col-span-1 text-right pt-1 relative">
-                            <span class="text-sm font-bold text-${color}-600 dark:text-${color}-400">${item.period}</span>
-                            <div class="absolute w-4 h-4 bg-${color}-500 rounded-full -right-[26px] top-1.5 border-4 border-white dark:border-slate-900 z-10"></div>
-                        </div>
-                        <div class="md:hidden mb-2">
-                            <span class="text-xs font-bold text-${color}-600 dark:text-${color}-400 bg-${color}-50 dark:bg-${color}-900/30 px-3 py-1 rounded-full">${item.period}</span>
-                        </div>
-                        <div class="col-span-4 bg-white/60 dark:bg-slate-800/60 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                            <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">${item.role}</h3>
-                            <p class="text-sm text-slate-500 mb-3 flex items-center gap-2"><i data-lucide="building" class="w-4 h-4"></i> ${item.institution}</p>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">${item.desc}</p>
+            if (portfolioData.pengalaman && portfolioData.pengalaman.length > 0) {
+                // Urutkan berdasarkan pendeteksian tahun periode (descending)
+                const sortedExp = [...portfolioData.pengalaman].sort((a, b) => getYearFromPeriod(b.period) - getYearFromPeriod(a.period));
+                
+                expContainer.innerHTML = sortedExp.map((item, i) => {
+                    const color = i % 2 === 0 ? 'blue' : 'violet';
+                    return `
+                    <div class="relative pl-6 sm:pl-8 md:pl-0">
+                        <div class="md:hidden absolute w-3 h-3 sm:w-4 sm:h-4 bg-${color}-500 rounded-full -left-[5px] sm:-left-[9px] top-1.5 border-4 border-white dark:border-slate-900"></div>
+                        <div class="md:grid md:grid-cols-5 gap-4 sm:gap-8 items-start">
+                            <div class="hidden md:block col-span-1 text-right pt-1 relative">
+                                <span class="text-sm font-bold text-${color}-600 dark:text-${color}-400">${item.period}</span>
+                                <div class="absolute w-4 h-4 bg-${color}-500 rounded-full -right-[26px] top-1.5 border-4 border-white dark:border-slate-900 z-10"></div>
+                            </div>
+                            <div class="md:hidden mb-1.5">
+                                <span class="text-[10px] font-bold text-${color}-600 dark:text-${color}-400 bg-${color}-50 dark:bg-${color}-900/30 px-2 py-0.5 rounded-full">${item.period}</span>
+                            </div>
+                            <div class="col-span-4 bg-white/60 dark:bg-slate-800/60 p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm min-w-0">
+                                <h3 class="text-sm sm:text-xl font-bold mb-1 text-slate-900 dark:text-white break-words">${item.role}</h3>
+                                <p class="text-xs sm:text-sm text-slate-500 mb-2 flex items-center gap-1.5 min-w-0"><i data-lucide="building" class="w-3.5 h-3.5 shrink-0"></i> <span class="truncate">${item.institution}</span></p>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed break-words">${item.desc}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `; }).join('');
+                `; }).join('');
+            } else {
+                expContainer.innerHTML = '<p class="text-sm text-slate-500 italic text-center py-4">Belum ada pengalaman yang ditambahkan.</p>';
+            }
 
             // Render Sertifikasi
             const certContainer = document.getElementById('sertifikasi-container');
             certContainer.innerHTML = portfolioData.sertifikasi.map((item) => `
                 <div class="bg-white/70 dark:bg-slate-800/70 rounded-2xl hover:-translate-y-2 transition-transform duration-300 border border-transparent hover:border-slate-300 dark:hover:border-slate-700 overflow-hidden flex flex-col shadow-md">
-                    <div class="relative w-full h-44 overflow-hidden group">
+                    <div class="relative w-full h-36 sm:h-44 overflow-hidden group">
                         <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
                     </div>
-                    <div class="p-6 flex-1 flex flex-col relative">
-                        <div class="absolute -top-10 right-4 w-14 h-14 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg border-4 border-slate-50 dark:border-slate-900">
-                            <i data-lucide="award" class="text-slate-500"></i>
+                    <div class="p-4 sm:p-6 flex-1 flex flex-col relative min-w-0">
+                        <div class="absolute -top-8 sm:-top-10 right-4 w-11 h-11 sm:w-14 sm:h-14 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg border-4 border-slate-50 dark:border-slate-900">
+                            <i data-lucide="award" class="text-slate-500 w-4 h-4 sm:w-5 sm:h-5"></i>
                         </div>
-                        <h3 class="font-bold text-lg mb-2 mt-2 leading-tight">${item.title}</h3>
-                        <p class="text-sm text-slate-500">${item.issuer}</p>
+                        <h3 class="font-bold text-sm sm:text-lg mb-1.5 mt-1 leading-tight break-words pr-8">${item.title}</h3>
+                        <p class="text-[11px] sm:text-sm text-slate-500 truncate">${item.issuer}</p>
                     </div>
                 </div>
             `).join('');
 
-            // Render Galeri
+            // Render Galeri Pelatihan (DIURUTKAN TERBARU -> TERLAMA)
             const galContainer = document.getElementById('pelatihan-gallery-container');
-            galContainer.innerHTML = portfolioData.gallery.map((item) => `
-                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all aspect-[4/3] bg-slate-200 dark:bg-slate-800">
-                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="text-white font-medium text-sm md:text-base block">${item.title}</span>
-                            <span class="text-blue-300 text-xs flex items-center gap-1 mt-1"><i data-lucide="map-pin" class="w-3 h-3"></i> ${item.loc}</span>
+            if (portfolioData.gallery && portfolioData.gallery.length > 0) {
+                // Urutkan berdasarkan tahun pada data lokasi (descending)
+                const sortedGal = [...portfolioData.gallery].sort((a, b) => getYearFromLoc(b.loc) - getYearFromLoc(a.loc));
+                
+                galContainer.innerHTML = sortedGal.map((item) => `
+                    <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all aspect-[4/3] bg-slate-200 dark:bg-slate-800">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 sm:p-5">
+                            <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 min-w-0">
+                                <span class="text-white font-medium text-xs sm:text-base block truncate">${item.title}</span>
+                                <span class="text-blue-300 text-[10px] sm:text-xs flex items-center gap-1 mt-0.5 sm:mt-1"><i data-lucide="map-pin" class="w-3 h-3 shrink-0"></i> <span class="truncate">${item.loc}</span></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            } else {
+                galContainer.innerHTML = '<p class="col-span-3 text-sm text-slate-500 italic text-center py-4">Belum ada dokumentasi pelatihan.</p>';
+            }
 
             // Render Sosmed
             const sosmedContainer = document.getElementById('sosmed-container');
@@ -915,13 +957,13 @@
                 const s = getSosmedStyle(item.platform);
                 const iconHTML = getSosmedLogoSVG(item.platform);
                 return `
-                <a href="${item.url}" target="_blank" class="group flex items-center gap-4 p-5 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-transparent ${s.hoverBorder} hover:shadow-md transition-all">
+                <a href="${item.url}" target="_blank" class="group flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-transparent ${s.hoverBorder} hover:shadow-md transition-all min-w-0">
                     <div class="group-hover:scale-110 transition-transform duration-300 shrink-0">
                         ${iconHTML}
                     </div>
-                    <div>
-                        <h3 class="font-bold text-slate-900 dark:text-white ${s.hoverText} transition-colors">${item.label}</h3>
-                        <p class="text-sm text-slate-500">${item.desc}</p>
+                    <div class="min-w-0">
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white ${s.hoverText} transition-colors truncate">${item.label}</h3>
+                        <p class="text-xs text-slate-500 truncate">${item.desc}</p>
                     </div>
                 </a>
             `; }).join('');
@@ -931,83 +973,95 @@
             lucide.createIcons();
         }
 
-        // 3. Logika Form & List Admin
+        // 4. Logika Form & List Admin (Menggunakan originalIndex Agar Tetap Aman Di-Edit)
         function renderAdminLists() {
-            // List Prestasi (BARU)
-            document.getElementById('admin-prestasi-list').innerHTML = portfolioData.prestasi.map((item, idx) => `
-                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+            // List Prestasi
+            const sortedAdminPrestasi = portfolioData.prestasi
+                .map((item, originalIndex) => ({ ...item, originalIndex }))
+                .sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
+
+            document.getElementById('admin-prestasi-list').innerHTML = sortedAdminPrestasi.map((item) => `
+                <div class="flex items-center justify-between p-2.5 sm:p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm text-xs sm:text-sm">
                     <div class="truncate mr-2 flex-1">
-                        <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
-                        <p class="text-xs text-slate-500 truncate">${item.year} - ${item.giver}</p>
+                        <p class="font-medium text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 truncate">${item.year} - ${item.giver}</p>
                     </div>
                     <div class="flex items-center gap-1 shrink-0">
-                        <button type="button" onclick="startEditPrestasi(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                        <button type="button" onclick="deletePrestasi(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="startEditPrestasi(${item.originalIndex})" class="p-1.5 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deletePrestasi(${item.originalIndex})" class="p-1.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                 </div>
             `).join('');
 
-            // List Pengalaman (Dengan Fitur Edit)
-            document.getElementById('admin-pengalaman-list').innerHTML = portfolioData.pengalaman.map((item, idx) => `
-                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+            // List Pengalaman
+            const sortedAdminExp = portfolioData.pengalaman
+                .map((item, originalIndex) => ({ ...item, originalIndex }))
+                .sort((a, b) => getYearFromPeriod(b.period) - getYearFromPeriod(a.period));
+
+            document.getElementById('admin-pengalaman-list').innerHTML = sortedAdminExp.map((item) => `
+                <div class="flex items-center justify-between p-2.5 sm:p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm text-xs sm:text-sm">
                     <div class="truncate mr-2 flex-1">
-                        <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.role}</p>
-                        <p class="text-xs text-slate-500 truncate">${item.period} - ${item.institution}</p>
+                        <p class="font-medium text-slate-800 dark:text-slate-200 truncate">${item.role}</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 truncate">${item.period} - ${item.institution}</p>
                     </div>
                     <div class="flex items-center gap-1 shrink-0">
-                        <button type="button" onclick="startEditPengalaman(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                        <button type="button" onclick="deletePengalaman(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="startEditPengalaman(${item.originalIndex})" class="p-1.5 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deletePengalaman(${item.originalIndex})" class="p-1.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                 </div>
             `).join('');
 
-            // List Sertifikasi (Dengan Fitur Edit)
+            // List Sertifikasi
             document.getElementById('admin-sertifikasi-list').innerHTML = portfolioData.sertifikasi.map((item, idx) => `
-                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
-                    <div class="flex items-center gap-3 overflow-hidden flex-1 mr-2">
-                        <img src="${item.img}" class="w-10 h-10 object-cover rounded shrink-0 border dark:border-slate-700">
+                <div class="flex items-center justify-between p-2.5 sm:p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm text-xs sm:text-sm">
+                    <div class="flex items-center gap-2 overflow-hidden flex-1 mr-2">
+                        <img src="${item.img}" class="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded shrink-0 border dark:border-slate-700">
                         <div class="truncate">
-                            <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
-                            <p class="text-xs text-slate-500 truncate">${item.issuer}</p>
+                            <p class="font-medium text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
+                            <p class="text-[10px] sm:text-xs text-slate-500 truncate">${item.issuer}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-1 shrink-0">
-                        <button type="button" onclick="startEditSertifikasi(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                        <button type="button" onclick="deleteSertifikasi(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="startEditSertifikasi(${idx})" class="p-1.5 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deleteSertifikasi(${idx})" class="p-1.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                 </div>
             `).join('');
 
-            // List Galeri (Dengan Fitur Edit)
-            document.getElementById('admin-gallery-list').innerHTML = portfolioData.gallery.map((item, idx) => `
-                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
-                    <div class="flex items-center gap-3 overflow-hidden flex-1 mr-2">
-                        <img src="${item.img}" class="w-10 h-10 object-cover rounded shrink-0 border dark:border-slate-700">
+            // List Galeri
+            const sortedAdminGallery = portfolioData.gallery
+                .map((item, originalIndex) => ({ ...item, originalIndex }))
+                .sort((a, b) => getYearFromLoc(b.loc) - getYearFromLoc(a.loc));
+
+            document.getElementById('admin-gallery-list').innerHTML = sortedAdminGallery.map((item) => `
+                <div class="flex items-center justify-between p-2.5 sm:p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm text-xs sm:text-sm">
+                    <div class="flex items-center gap-2 overflow-hidden flex-1 mr-2">
+                        <img src="${item.img}" class="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded shrink-0 border dark:border-slate-700">
                         <div class="truncate">
-                            <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
-                            <p class="text-xs text-slate-500 truncate">${item.loc}</p>
+                            <p class="font-medium text-slate-800 dark:text-slate-200 truncate">${item.title}</p>
+                            <p class="text-[10px] sm:text-xs text-slate-500 truncate">${item.loc}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-1 shrink-0">
-                        <button type="button" onclick="startEditGalleryItem(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                        <button type="button" onclick="deleteGalleryItem(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="startEditGalleryItem(${item.originalIndex})" class="p-1.5 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deleteGalleryItem(${item.originalIndex})" class="p-1.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                 </div>
             `).join('');
 
-            // List Sosmed (Dengan Fitur Edit)
+            // List Sosmed
             document.getElementById('admin-sosmed-list').innerHTML = portfolioData.sosmed.map((item, idx) => `
-                <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm">
+                <div class="flex items-center justify-between p-2.5 sm:p-3 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-sm text-xs sm:text-sm">
                     <div class="truncate flex items-center gap-2 flex-1 mr-2">
                         <i data-lucide="${item.platform === 'tiktok' ? 'smartphone' : item.platform}" class="w-4 h-4 text-slate-500 shrink-0"></i>
                         <div class="truncate">
-                            <p class="font-medium text-sm text-slate-800 dark:text-slate-200 truncate">${item.label}</p>
-                            <p class="text-xs text-slate-500 truncate">${item.url}</p>
+                            <p class="font-medium text-slate-800 dark:text-slate-200 truncate">${item.label}</p>
+                            <p class="text-[10px] sm:text-xs text-slate-500 truncate">${item.url}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-1 shrink-0">
-                        <button type="button" onclick="startEditSosmed(${idx})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg" title="Edit"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                        <button type="button" onclick="deleteSosmed(${idx})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="startEditSosmed(${idx})" class="p-1.5 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button type="button" onclick="deleteSosmed(${idx})" class="p-1.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                 </div>
             `).join('');
@@ -1371,6 +1425,15 @@
             autoSaveToCloud();
         }
 
+        function deleteGalleryItem(idx) { 
+            if (confirm('Hapus foto dari galeri?')) { 
+                if (editGalIdx === idx) cancelEditGalleryItem();
+                portfolioData.gallery.splice(idx, 1); 
+                renderData(); 
+                autoSaveToCloud();
+            } 
+        }
+
         // ==========================================
         //  Fungsi-Fungsi Modul (Sosmed)
         // ==========================================
@@ -1481,12 +1544,12 @@
             if (isChatbotOpen) {
                 if (win) win.classList.remove('hidden');
                 if (iconContainer) {
-                    iconContainer.innerHTML = '<i data-lucide="chevron-down" class="w-6 h-6"></i>';
+                    iconContainer.innerHTML = '<i data-lucide="chevron-down" class="w-5 h-5 sm:w-6 sm:h-6"></i>';
                 }
             } else {
                 if (win) win.classList.add('hidden');
                 if (iconContainer) {
-                    iconContainer.innerHTML = '<i data-lucide="message-square" class="w-6 h-6"></i>';
+                    iconContainer.innerHTML = '<i data-lucide="message-square" class="w-5 h-5 sm:w-6 sm:h-6"></i>';
                 }
             }
             lucide.createIcons();
@@ -1525,7 +1588,7 @@
             if (sender === 'user') {
                 messageHtml = `
                     <div class="flex justify-end max-w-[85%] ml-auto">
-                        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-sm leading-relaxed">
+                        <div class="bg-blue-600 text-white p-2.5 sm:p-3 rounded-2xl rounded-tr-none shadow-sm text-xs sm:text-sm leading-relaxed">
                             ${text}
                         </div>
                     </div>
@@ -1533,8 +1596,8 @@
             } else {
                 messageHtml = `
                     <div class="flex gap-2 items-start max-w-[85%]">
-                        <div class="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">N</div>
-                        <div class="bg-white dark:bg-slate-900 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/50 dark:border-slate-800/50 text-slate-700 dark:text-slate-300 text-sm leading-relaxed whitespace-pre-line">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold text-[10px] sm:text-xs shrink-0">N</div>
+                        <div class="bg-white dark:bg-slate-900 p-2.5 sm:p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/50 dark:border-slate-800/50 text-slate-700 dark:text-slate-300 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
                             ${text}
                         </div>
                     </div>
